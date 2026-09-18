@@ -1,165 +1,190 @@
 # AGENTS.md
 
-Instruções para agentes de código (Claude Code, Codex, Cursor, Aider, e outros) a trabalhar neste repositório. Este ficheiro é a fonte da verdade — se leres isto no arranque, sabes o essencial para não partir nada.
+Machine-readable spec for AI coding agents working on this repo.
 
-## O que é este repo
+## Repo
 
-Site estático da comunidade Tesla Club Portugal, servido em [teslaclubportugal.com](https://teslaclubportugal.com). Deploy automático em cada merge para `main`.
+- Name: `Tesla-Club-Portugal/teslaclubportugal-static`
+- Production: `https://teslaclubportugal.com`
+- Preview host: `<branch-slug>.teslaclubportugal-static-v2.pages.dev`
+- License: content © Tesla Club Portugal
+- Public: yes
 
-## Stack (fixa, não trocar)
+## Stack
 
-- **Astro 7** (SSG puro, output estático)
-- **Tailwind CSS v4** via `@tailwindcss/vite`
-- **MDX** para conteúdo em Markdown
-- **@astrojs/sitemap** para sitemap automático
-- **Node.js ≥ 22**
-
-## Estrutura de ficheiros
-
-```
-teslaclubportugal-static/
-├── src/
-│   ├── layouts/
-│   │   ├── BaseLayout.astro      # <html>, <head>, nav, footer, SEO
-│   │   └── PageLayout.astro      # BaseLayout + banda cinza do header + prose
-│   ├── components/
-│   │   ├── SEO.astro             # meta tags, OG, Twitter, JSON-LD
-│   │   ├── Nav.astro             # nav fixo com logo TCP
-│   │   └── Footer.astro
-│   ├── pages/                    # cada .astro/.mdx = uma URL
-│   │   ├── index.astro           # /
-│   │   ├── sobre-nos/…
-│   │   ├── guias/…
-│   │   ├── superchargers.astro
-│   │   ├── parcerias.astro       # lista de parceiros no array `partners`
-│   │   ├── faq.astro             # perguntas no array `faqs`
-│   │   ├── oficinas-e-reparacoes.astro
-│   │   ├── english/…             # variante EN
-│   │   ├── my-blog/…             # índice do blog
-│   │   ├── 2018/…                # posts do blog (por ano/mês/dia/slug)
-│   │   └── 404.astro
-│   ├── content/                  # (opcional) MDX collections
-│   └── styles/global.css         # tema Tailwind + prose overrides
-├── public/                       # servido tal-e-qual, sem processing
-│   ├── images/                   # imagens novas (hero, logo, team)
-│   ├── media/                    # migradas do WP (mantêm estrutura YYYY/MM)
-│   ├── favicon*, apple-touch-icon.png, android-chrome-*.png
-│   ├── site.webmanifest, robots.txt
-│   ├── _redirects                # regras de redirect / 410
-│   └── _headers                  # HTTP headers (cache, security)
-├── astro.config.mjs
-├── package.json                  # scripts: dev / build / preview
-└── .github/
-    ├── workflows/deploy.yml      # CI: build + wrangler pages deploy
-    └── CODEOWNERS
-```
-
-## Voz e escrita
-
-1. **Português de Portugal** em tudo, excepto `/english/*` que é EN-GB para visitantes.
-2. **Nunca uses em-dashes (—).** Substituis por vírgula, ponto ou dois-pontos.
-3. **Segunda pessoa (tu)**, informal. Escreve como falarias com um amigo. Nada de "prezado utilizador".
-4. **Zero corporate**. Frases curtas. Se soa a press release, reescreve.
-5. **Sem SEO-spam**. Escreve para pessoas, não para o Google — a estrutura semântica já trata do SEO.
-6. **Preserva conteúdo migrado**. Blog posts foram copiados verbatim do site WP antigo. Se refactorares o layout, mantém as palavras exactas do post.
-
-## Design tokens (em `src/styles/global.css`)
-
-| Token | Valor | Uso |
+| Tool | Version | Notes |
 |---|---|---|
-| `--color-ink` | `#171a20` | texto principal, botões escuros |
-| `--color-ink-soft` | `#393c41` | texto de corpo |
-| `--color-ink-muted` | `#5c5e62` | metadata, eyebrow secundário |
-| `--color-line` | `#edeeef` | bordas |
-| `--color-surface` | `#ffffff` | fundo |
-| `--color-surface-alt` | `#f4f4f4` | banda cinza dos headers, placeholders |
-| `--color-accent` | `#e82127` | vermelho Tesla (accent apenas) |
-| `--font-sans` | Inter | via Google Fonts, em `SEO.astro` |
+| Node.js | >=22 | hard requirement |
+| Astro | ^7 | SSG, static output only |
+| Tailwind CSS | ^4 | via `@tailwindcss/vite` |
+| MDX | via `@astrojs/mdx` | for Markdown pages |
+| sitemap | via `@astrojs/sitemap` | auto-generated on build |
+| Hosting | Cloudflare Pages | project `teslaclubportugal-static-v2` |
 
-Tailwind v4 lê estas variáveis como cores via `bg-[var(--color-ink)]` etc.
+## Scripts
 
-## Como adicionar coisas
+- `npm run dev` — local dev server (localhost:4321)
+- `npm run build` — build to `dist/`
+- `npm run preview` — serve `dist/`
+- Deploy runs in GitHub Actions on push to `main`; do not deploy from a workstation
 
-### Novo parceiro (`src/pages/parcerias.astro`)
+## Directory map
 
-Adiciona ao array `partners`:
-```ts
-{ name: 'Nome',  url: 'https://...', logo: '/media/YYYY/MM/logo.png', perk: 'Desconto tal.' },
 ```
-- Sem `url:` → nome renderiza sem link
-- Sem `logo:` → placeholder do clube em cinza (mesmo estilo da caixa "És uma empresa a querer ser parceira?")
-- Com `logo:` → mete o ficheiro em `public/media/YYYY/MM/nome.png` (~300-800px, PNG transparente ou JPEG)
-
-### Novo membro da equipa (`src/pages/sobre-nos/a-equipa.astro`)
-
-Adiciona ao array `team`:
-```ts
-{ name: 'Nome Apelido', photo: '/images/team/nome-apelido.jpg' },
+src/
+  layouts/
+    BaseLayout.astro   # html + head + nav + footer + SEO
+    PageLayout.astro   # BaseLayout + gray header band + prose wrapper
+  components/
+    SEO.astro          # meta, OG, Twitter, JSON-LD (Organization + WebSite + Article + FAQPage)
+    Nav.astro          # fixed nav; edit `links` array
+    Footer.astro       # edit `cols` array
+  pages/               # file-based routing; .astro and .mdx
+    index.astro        # /
+    sobre-nos/*        # about
+    guias/*
+    superchargers.astro
+    parcerias.astro    # partners array
+    faq.astro          # faqs array
+    oficinas-e-reparacoes.astro
+    english/*          # EN-GB variant
+    my-blog/index.astro
+    2018/MM/DD/*.astro # blog posts
+    404.astro
+  content/             # optional MDX collections
+  styles/global.css    # theme tokens + prose overrides
+public/                # copied verbatim to dist/
+  images/              # v2-era assets (hero, logo, team)
+  media/YYYY/MM/       # migrated from WP; URLs preserved
+  favicon-*.png favicon.ico apple-touch-icon.png android-chrome-*.png
+  site.webmanifest robots.txt
+  _redirects _headers
+astro.config.mjs       # site: 'https://teslaclubportugal.com', trailingSlash: 'always'
+package.json
+.github/
+  workflows/deploy.yml # build + wrangler pages deploy
+  CODEOWNERS           # auto-reviewers
 ```
-- Foto em `public/images/team/nome-apelido.jpg`, ~400px quadrada, JPEG qualidade 88
-- Sem `photo:` → placeholder com iniciais em cinza
-- Ex-membro → adiciona à secção `<section>Anteriormente</section>` no mesmo ficheiro (a preto e branco)
 
-### Nova pergunta na FAQ (`src/pages/faq.astro`)
+## Design tokens (`src/styles/global.css` `@theme`)
 
-Adiciona ao array `faqs`:
-```ts
-{ q: 'Pergunta?', a: 'Resposta em HTML permitido.' },
 ```
-O `JSON-LD` do `FAQPage` é regerado automaticamente a partir do array.
-
-### Novo post no blog
-
-Cria `src/pages/YYYY/MM/DD/slug-do-post.astro` a partir do template de `2018/04/06/bem-vindos-*.astro`. Passa `image=` (path de OG image), `type="article"`, `publishedAt`, opcionalmente `modifiedAt`. Adiciona também ao array `posts` em `src/pages/my-blog/index.astro`. Actualiza a `<nav>` prev/next no fim dos posts adjacentes.
-
-### Nova página normal
-
-Cria `src/pages/nova-pagina.astro` usando `PageLayout`:
-```astro
----
-import PageLayout from '../layouts/PageLayout.astro';
----
-<PageLayout title="Título" description="Meta description" eyebrow="Categoria" headline="H1" intro="Sub-título.">
-  <h2>Secção</h2>
-  <p>Texto.</p>
-</PageLayout>
+--color-ink:         #171a20
+--color-ink-soft:    #393c41
+--color-ink-muted:   #5c5e62
+--color-line:        #edeeef
+--color-surface:     #ffffff
+--color-surface-alt: #f4f4f4
+--color-accent:      #e82127
+--font-sans:         Inter (loaded from Google Fonts in SEO.astro)
+--tracking-tight:    -0.02em
+--tracking-hero:     -0.03em
 ```
-Adiciona ao menu se relevante: `src/components/Nav.astro` array `links`, e a `src/components/Footer.astro` array `cols`.
+
+Consumption: `bg-[var(--color-ink)]`, `text-[var(--color-accent)]`, etc.
+
+## Content language rules
+
+- Locale: `pt-PT` by default. Only `/english/*` is `en-GB`.
+- Character `—` (em-dash, U+2014) is banned in prose. Substitute with `,`, `.`, or `:`.
+- Voice: second-person informal ("tu"). No corporate register.
+- Migrated blog posts (`src/pages/2018/**/*.astro`) contain WP-era body copy preserved verbatim. Do not paraphrase or trim without explicit instruction. Structural edits (h2/h3 promotion, figure wrappers) are fine; word substitutions are not.
 
 ## Assets
 
-- `/images/…` → assets novos criados para v2 (hero, logo, team, OG images)
-- `/media/…` → migrados do WP antigo (fotos de posts, logos de parceiros). URLs mantêm-se `/media/YYYY/MM/…` para preservar histórico. `_redirects` faz 301 dos URLs antigos `/wp-content/uploads/*` → `/media/:splat`.
+- `/images/**` — created for v2. Prefer for new content.
+- `/media/YYYY/MM/**` — migrated from `/wp-content/uploads/**`. Keep the date hierarchy.
+- `_redirects` maps legacy `/wp-content/uploads/*` → `/media/:splat 301` and blanket-301s other `/wp-content/*` and `/wp-*.php`. Do not remove.
+- Team photos: `/images/team/<slug>.jpg`, ~400px square, JPEG q88.
+- Favicons: 16/32/48/96/180/192/512 PNGs at repo root of `public/`. Regenerate all together from a single square logo source using `sips`.
+
+## How to add content
+
+### Partner (`src/pages/parcerias.astro`)
+
+Append to `partners: Partner[]`:
+
+```ts
+{ name: string, url: string | null, logo: string | null, perk: string }
+```
+
+- `logo === null` → renders faded TCP badge on `bg-[var(--color-surface-alt)]`
+- `logo` path convention: `/media/YYYY/MM/<slug>.png|jpg` (drop file in `public/media/YYYY/MM/`)
+- `url === null` → name renders as plain text (no anchor)
+
+### Team member (`src/pages/sobre-nos/a-equipa.astro`)
+
+Append to `team: Member[]`:
+
+```ts
+{ name: string, photo?: string }
+```
+
+- `photo` missing → initials placeholder computed from `name`
+- Former admins go in a separate `Anteriormente` section, grayscale + opacity 80%
+
+### FAQ item (`src/pages/faq.astro`)
+
+Append to `faqs`. `a` accepts inline HTML (`<strong>`, `<a>`, `<br>`, lists). `FAQPage` JSON-LD is regenerated automatically.
+
+### Blog post
+
+- Path: `src/pages/YYYY/MM/DD/<slug>.astro`
+- Use `PageLayout` with `type="article"`, `publishedAt` (ISO 8601), optional `modifiedAt`
+- Register in `src/pages/my-blog/index.astro` `posts` array
+- Add prev/next `<nav>` at the bottom, cross-linking to adjacent posts
+
+### Plain page
+
+- Path: `src/pages/<slug>.astro` or `src/pages/<parent>/<slug>.astro`
+- Use `PageLayout` (auto: gray banded header + prose main). Escape prose scoping with `class="not-prose"` when needed.
+- Wire into nav (`src/components/Nav.astro` `links`) and footer (`src/components/Footer.astro` `cols`) if it should be discoverable.
+
+## Prose CSS caveats
+
+- `.prose :is(p, li) a` — link styling scoped to inline text only. Block-level `<a>` cards are unaffected.
+- `.not-prose` blocks: descendant elements have `margin-top: 0` reset via `.prose .not-prose :is(h1,h2,h3,h4,p,ul,ol,li,img)` rule. Use `.not-prose` around card grids and image figures inside `.prose` blocks.
 
 ## Git flow
 
-- **`main`** protegida: PR obrigatório, 1 approval, sem force push, sem delete.
-- Manuel Rocha (@manuelrocha88) e João Nunes (@jonasman) podem push directo se necessário; para todos os outros, PR only.
-- **CODEOWNERS** (`.github/CODEOWNERS`) pede-lhes review automaticamente em cada PR.
-- **`delete_branch_on_merge`** activo — a branch da feature apaga-se sozinha após merge.
-- **Preview per PR**: cada push a uma branch de PR faz deploy num URL próprio `<slug>.teslaclubportugal-static-v2.pages.dev`. O bot comenta o link no PR.
+- `main` is protected: PR required, 1 approval, no force push, no branch delete.
+- `enforce_admins: false` — `@manuelrocha88` and `@jonasman` can push directly if necessary (they are in the `restrictions.users` list).
+- `delete_branch_on_merge: true` at repo level.
+- `.github/CODEOWNERS` maps `*` to both admins → auto-request on every PR.
+- Commit author identity: use the maintainer's global git config. **Do not** override with `-c user.email=…`. Wrong-email commits produce unlinked "ghost user" attribution on GitHub.
 
-## Deploy
+## CI/CD
 
-- Push em `main` → GitHub Action → `wrangler pages deploy dist` → Cloudflare Pages
-- Custom domain: `teslaclubportugal.com` (apex CNAME → `teslaclubportugal-static-v2.pages.dev`, proxied)
-- Logs: [github.com/Tesla-Club-Portugal/teslaclubportugal-static/actions](https://github.com/Tesla-Club-Portugal/teslaclubportugal-static/actions)
-- Ver deploy no dashboard CF: [dash.cloudflare.com](https://dash.cloudflare.com) → Workers & Pages → `teslaclubportugal-static-v2`
+- Workflow: `.github/workflows/deploy.yml`
+- Triggers: `push` on `main`, `pull_request` targeting `main`, `workflow_dispatch`
+- Steps: `checkout` → `setup-node@22` → `npm ci` → `npm run build` → `wrangler pages deploy dist --project-name=teslaclubportugal-static-v2 --branch=<slug>`
+- On `pull_request`: additionally posts (or updates) a sticky comment with the branch-alias preview URL
+- Secrets: `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID` (repo-level, present)
 
-## Não tocar
+## DNS
 
-- `dist/`, `node_modules/`, `.astro/`, `.wrangler/` — ignorados via `.gitignore`, artefactos de build
-- Ficheiros dentro de `public/media/**` — assets estáticos, substitui via commit não hand-edit
-- `.github/workflows/deploy.yml` — mudar só se alterares a estratégia de deploy
+- Zone: `teslaclubportugal.com` (Cloudflare, zone id `9497209bebb5dd95e793ccb250e3ad5c`)
+- Apex: CNAME `teslaclubportugal.com` → `teslaclubportugal-static-v2.pages.dev`, proxied
+- `www`: CNAME → `teslaclubportugal.com`, proxied
+- MX/TXT retained for Zoho email
 
-## Antes de propor mudanças grandes
+## Do not touch
 
-1. Corre `npm run build` localmente — se falha, não commites
-2. Segue as regras de voz (secção acima)
-3. Se em dúvida sobre arquitectura, abre issue antes de mexer em código
-4. **Nunca** removas conteúdo migrado do blog sem justificação explícita
+- `dist/`, `node_modules/`, `.astro/`, `.wrangler/` — build artefacts, `.gitignore`d
+- `public/media/**` — replace via commit only, never hand-edit binaries
+- `.github/workflows/deploy.yml` — change only when the deploy strategy changes
+- Blog post word-for-word body copy in `src/pages/2018/**` (structural changes ok, wording is preserved v1 content)
 
-## Contactos
+## Preflight checklist for any PR
 
-- Issues técnicos: [GitHub Issues](https://github.com/Tesla-Club-Portugal/teslaclubportugal-static/issues)
-- Discussão geral: [grupo Facebook do clube](https://www.facebook.com/groups/teslaclubportugal)
+1. `npm run build` succeeds locally (no missing images, no broken imports)
+2. No `—` em-dash characters introduced in prose
+3. If new asset added, path is under `/images/**` or `/media/YYYY/MM/**`
+4. If new page added, registered in `Nav.astro` or `Footer.astro` if user-facing
+5. Commit author email matches a GitHub-verified email of the human on record
+
+## References
+
+- `README.md` — human community contribution guide (Portuguese)
+- Astro docs: https://docs.astro.build
+- Cloudflare Pages docs: https://developers.cloudflare.com/pages
