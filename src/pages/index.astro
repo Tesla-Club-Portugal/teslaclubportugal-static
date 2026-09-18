@@ -37,13 +37,14 @@ const pillars = [
 >
   <!-- Hero -->
   <section class="relative w-full pt-16" aria-labelledby="hero-title">
-    <div class="relative w-full" style="aspect-ratio: 5 / 3;">
+    <div class="relative w-full" style="height: clamp(32rem, calc(100svh - 4rem), 45rem);">
       <img
         src={hero}
         srcset={heroSrcset}
         sizes="100vw"
         alt="Cinco Teslas em Portugal alinhados frente a frente. Um Model S preto, um Model 3 azul, um Model X azul com portas gullwing abertas, um Model S azul e um Model 3 vermelho, todos com matrícula portuguesa, fotografados por membros do Tesla Club Portugal."
         class="absolute inset-0 h-full w-full object-cover object-center"
+        style="object-position: center 62%;"
         fetchpriority="high"
         loading="eager"
         decoding="async"
@@ -51,7 +52,7 @@ const pillars = [
         height="1201"
       />
       <div class="pointer-events-none absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
-      <div class="absolute inset-x-0 bottom-0 z-10 text-center text-white px-6 pb-[6%] md:pb-[4%]">
+      <div class="absolute inset-x-0 bottom-0 z-10 text-center text-white px-6 pb-8 md:pb-10">
         <h1 id="hero-title" class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-[-0.03em] leading-[1.02] drop-shadow-lg">
           Tesla Club Portugal
         </h1>
