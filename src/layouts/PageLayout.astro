@@ -4,7 +4,7 @@ export interface Props {
   title: string;
   description: string;
   eyebrow?: string;
-  headline?: string;   // large H1 in hero — defaults to title
+  headline?: string;   // large H1 in hero, defaults to title
   intro?: string;      // subtitle under H1
   image?: string;
   type?: 'website' | 'article';
@@ -15,7 +15,7 @@ export interface Props {
   alternates?: { lang: string; href: string }[];
 }
 const { eyebrow, headline, intro, ...seo } = Astro.props;
-const h1 = headline ?? seo.title.replace(/ — .*$/, '');
+const h1 = headline ?? seo.title.replace(/, .*$/, '');
 ---
 <BaseLayout {...seo}>
   <header class="max-w-4xl mx-auto px-6 pt-8 pb-14 md:pt-16 md:pb-20">

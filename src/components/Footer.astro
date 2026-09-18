@@ -5,7 +5,7 @@ const cols = [
     title: 'Clube',
     links: [
       { href: '/sobre-nos/', label: 'Sobre nós' },
-      { href: '/sobre-nos/a-equipa/', label: 'A Equipa' },
+      { href: '/sobre-nos/a-equipa/', label: 'A equipa' },
       { href: '/sobre-nos/como-posso-ajudar/', label: 'Como ajudar' },
     ],
   },
@@ -32,17 +32,15 @@ const cols = [
 <footer class="mt-32 border-t border-[var(--color-line)] bg-[var(--color-surface-alt)]">
   <div class="max-w-7xl mx-auto px-6 py-16 grid grid-cols-2 md:grid-cols-4 gap-10 text-sm">
     <div class="col-span-2 md:col-span-1">
-      <div class="flex items-center gap-2 font-semibold text-[var(--color-ink)]">
-        <svg width="24" height="17" viewBox="0 0 342 35" fill="currentColor" aria-hidden="true" class="text-[var(--color-accent)]">
-          <path d="M0,.1a9.7,9.7,0,0,0,7.3,7.3h11l.5.2V34.4h6.9V7.6L26.2,7.4h11A9.6,9.6,0,0,0,44.5.1h0V0H0V.1"/>
-        </svg>
+      <div class="flex items-center gap-2.5 font-semibold text-[var(--color-ink)]">
+        <img src="/images/logo-tcp-96.png" alt="" width="28" height="28" class="w-7 h-7 rounded-full" />
         <span>Tesla Club Portugal</span>
       </div>
       <p class="mt-3 text-[var(--color-ink-muted)] leading-relaxed">
-        Clube oficial em português de entusiastas Tesla desde 2018.
+        Somos donos de Teslas em Portugal. E também quem está a pensar em comprar um.
       </p>
       <p class="mt-4 text-[13px] text-[var(--color-ink-muted)]">
-        Não afiliado à Tesla, Inc.
+        Este site não é oficial nem afiliado à Tesla, Inc.
       </p>
     </div>
     {cols.map(col => (
@@ -65,7 +63,7 @@ const cols = [
   <div class="border-t border-[var(--color-line)]">
     <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-3 text-[13px] text-[var(--color-ink-muted)]">
       <p>© {year} Tesla Club Portugal</p>
-      <p>Feito em Portugal por membros do clube ⚡</p>
+      <p>Feito em Portugal por membros do clube.</p>
     </div>
   </div>
 </footer>
