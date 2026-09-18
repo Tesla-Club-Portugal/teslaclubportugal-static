@@ -18,18 +18,20 @@ const { eyebrow, headline, intro, ...seo } = Astro.props;
 const h1 = headline ?? seo.title.replace(/, .*$/, '');
 ---
 <BaseLayout {...seo}>
-  <header class="max-w-4xl mx-auto px-6 pt-8 pb-14 md:pt-16 md:pb-20">
-    {eyebrow && (
-      <p class="text-sm font-semibold tracking-widest text-[var(--color-accent)] uppercase">{eyebrow}</p>
-    )}
-    <h1 class="mt-3 text-4xl md:text-6xl font-bold tracking-[-0.03em] leading-[1.05] text-[var(--color-ink)]">
-      {h1}
-    </h1>
-    {intro && (
-      <p class="mt-5 text-lg md:text-xl text-[var(--color-ink-soft)] leading-relaxed max-w-3xl">{intro}</p>
-    )}
-  </header>
-  <article class="max-w-3xl mx-auto px-6 prose">
-    <slot />
-  </article>
+  <div class="max-w-3xl mx-auto px-6">
+    <header class="pt-8 pb-14 md:pt-16 md:pb-20">
+      {eyebrow && (
+        <p class="text-sm font-semibold tracking-widest text-[var(--color-accent)] uppercase">{eyebrow}</p>
+      )}
+      <h1 class="mt-3 text-4xl md:text-6xl font-bold tracking-[-0.03em] leading-[1.05] text-[var(--color-ink)]">
+        {h1}
+      </h1>
+      {intro && (
+        <p class="mt-5 text-lg md:text-xl text-[var(--color-ink-soft)] leading-relaxed">{intro}</p>
+      )}
+    </header>
+    <article class="prose">
+      <slot />
+    </article>
+  </div>
 </BaseLayout>
