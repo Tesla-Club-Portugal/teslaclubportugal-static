@@ -4,6 +4,27 @@ Este é o código do [teslaclubportugal.com](https://teslaclubportugal.com). Est
 
 Não é preciso saber programar. A maior parte das coisas do dia a dia (adicionar um parceiro, arranjar um erro no texto, actualizar uma foto) faz-se pelo GitHub sem instalar nada.
 
+## Índice
+
+- [Quero contribuir. Por onde começo?](#quero-contribuir-por-onde-começo)
+- [Como fazer uma mudança](#como-fazer-uma-mudança)
+  - [Método rápido: editar directamente no GitHub](#método-rápido-editar-directamente-no-github)
+  - [Método completo: instalar localmente](#método-completo-instalar-localmente)
+- [Onde está cada coisa](#onde-está-cada-coisa)
+- [Tarefas comuns, passo a passo](#tarefas-comuns-passo-a-passo)
+  - [Adicionar um parceiro à página de Parcerias](#adicionar-um-parceiro-à-página-de-parcerias)
+  - [Adicionar ou tirar um membro da equipa](#adicionar-ou-tirar-um-membro-da-equipa)
+  - [Adicionar uma pergunta à FAQ](#adicionar-uma-pergunta-à-faq)
+  - [Escrever um post no blog](#escrever-um-post-no-blog)
+  - [Corrigir um typo](#corrigir-um-typo)
+- [Regras de escrita](#regras-de-escrita)
+- [Como funciona o deploy](#como-funciona-o-deploy)
+- [Regras do repositório](#regras-do-repositório)
+- [Stack técnica (para quem quer saber)](#stack-técnica-para-quem-quer-saber)
+- [MDX, em duas palavras](#mdx-em-duas-palavras)
+- [Quem está por trás](#quem-está-por-trás)
+- [Aviso](#aviso)
+
 ## Quero contribuir. Por onde começo?
 
 Depende do que queres fazer.
