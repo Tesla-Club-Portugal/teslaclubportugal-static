@@ -3,36 +3,17 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
 type Member = {
   name: string;
-  role?: string;
-  url: string;
   photo?: string;
 };
 
 // Actualiza aqui: para adicionar uma foto real, mete o ficheiro em
 // public/images/team/nome.jpg e adiciona `photo: '/images/team/nome.jpg'`.
 const team: Member[] = [
-  {
-    name: 'Hugo Pinto',
-    role: 'Fundador',
-    url: 'https://www.linkedin.com/in/hugopinto/',
-  },
-  {
-    name: 'João Nunes',
-    url: 'https://github.com/jonasman',
-    photo: '/images/team/joao-nunes.jpg',
-  },
-  {
-    name: 'Sérgio Costa',
-    url: 'https://www.linkedin.com/in/s%C3%A9rgio-costa-b86039a4/',
-  },
-  {
-    name: 'Diana Freytag',
-    url: 'https://www.facebook.com/diana.anastacio',
-  },
-  {
-    name: 'Bruno Figueiredo',
-    url: 'https://www.facebook.com/bruno.figueiredo.52206654/',
-  },
+  { name: 'Hugo Pinto',       photo: '/images/team/hugo-pinto.jpg' },
+  { name: 'João Nunes',       photo: '/images/team/joao-nunes.jpg' },
+  { name: 'Sérgio Costa',     photo: '/images/team/sergio-costa.jpg' },
+  { name: 'Diana Freytag' },
+  { name: 'Bruno Figueiredo' },
 ];
 
 function initials(name: string): string {
@@ -61,31 +42,17 @@ function initials(name: string): string {
   <section class="max-w-5xl mx-auto px-6 pt-10 md:pt-16 pb-16">
     <ul class="grid gap-8 sm:grid-cols-2 md:grid-cols-3">
       {team.map(m => (
-        <li>
-          <a href={m.url} target="_blank" rel="noopener"
-             class="group block text-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] rounded-2xl p-4">
-            <div class="mx-auto w-32 h-32 md:w-36 md:h-36 rounded-full overflow-hidden bg-[var(--color-surface-alt)] flex items-center justify-center ring-1 ring-[var(--color-line)] group-hover:ring-[var(--color-ink)] transition">
-              {m.photo ? (
-                <img src={m.photo} alt={`Foto de ${m.name}`} width="288" height="288" loading="lazy" decoding="async" class="w-full h-full object-cover" />
-              ) : (
-                <span aria-hidden="true" class="text-3xl md:text-4xl font-semibold tracking-tight text-[var(--color-ink-muted)] select-none">
-                  {initials(m.name)}
-                </span>
-              )}
-            </div>
-            <h2 class="mt-5 text-lg font-semibold text-[var(--color-ink)] group-hover:text-[var(--color-accent)] transition">
-              {m.name}
-            </h2>
-            {m.role && (
-              <p class="mt-1 text-sm font-medium tracking-wide uppercase text-[var(--color-accent)]">
-                {m.role}
-              </p>
+        <li class="text-center">
+          <div class="mx-auto w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden bg-[var(--color-surface-alt)] flex items-center justify-center ring-1 ring-[var(--color-line)]">
+            {m.photo ? (
+              <img src={m.photo} alt={`Foto de ${m.name}`} width="320" height="320" loading="lazy" decoding="async" class="w-full h-full object-cover" />
+            ) : (
+              <span aria-hidden="true" class="text-3xl md:text-4xl font-semibold tracking-tight text-[var(--color-ink-muted)] select-none">
+                {initials(m.name)}
+              </span>
             )}
-            <p class="mt-1 text-xs text-[var(--color-ink-muted)]">
-              {new URL(m.url).hostname.replace(/^www\./, '')}
-              <span aria-hidden="true" class="ml-1">↗</span>
-            </p>
-          </a>
+          </div>
+          <h2 class="mt-5 text-lg font-semibold text-[var(--color-ink)]">{m.name}</h2>
         </li>
       ))}
     </ul>
