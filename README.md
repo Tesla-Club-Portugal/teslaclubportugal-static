@@ -5,9 +5,9 @@ incident. Deployed via Cloudflare Pages from this repo.
 
 ## Structure
 
-- `public/` — everything served. HTML per-page, WP assets under `wp-content/`.
-- `public/_redirects` — old WP routes (wp-admin, forum, feeds) → home / 410.
-- `public/_headers` — CSP-lite + long cache for immutable assets.
+- `docs/` — everything served. HTML per-page, WP assets under `wp-content/`.
+- `docs/_redirects` — old WP routes (wp-admin, forum, feeds) → home / 410.
+- `docs/_headers` — CSP-lite + long cache for immutable assets.
 
 ## Deploy
 
