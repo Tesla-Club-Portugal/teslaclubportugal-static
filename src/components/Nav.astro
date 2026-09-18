@@ -1,0 +1,35 @@
+---
+const links = [
+  { href: '/sobre-nos/',              label: 'Clube' },
+  { href: '/guias/',                  label: 'Guias' },
+  { href: '/superchargers/',          label: 'Superchargers' },
+  { href: '/parcerias/',              label: 'Parcerias' },
+  { href: '/faq/',                    label: 'FAQ' },
+  { href: '/my-blog/',                label: 'Blog' },
+];
+const current = Astro.url.pathname;
+---
+<header class="fixed inset-x-0 top-0 z-50 backdrop-blur-md bg-white/80 border-b border-[var(--color-line)]/60">
+  <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 h-20" aria-label="Principal">
+    <a href="/" class="flex items-center gap-3 font-semibold text-[var(--color-ink)] tracking-tight" aria-label="Tesla Club Portugal, ir para a página inicial">
+      <img src="/images/logo-tcp-128.png" alt="" width="56" height="56" class="w-12 h-12 md:w-14 md:h-14" />
+      <span class="hidden sm:inline text-base md:text-[17px]">Tesla Club Portugal</span>
+      <span class="sm:hidden text-base">TCP</span>
+    </a>
+    <ul class="hidden md:flex items-center gap-1 text-sm font-medium">
+      {links.map(l => (
+        <li>
+          <a href={l.href} class:list={["px-3 py-1.5 rounded-full transition hover:bg-[var(--color-ink)]/5",
+            current.startsWith(l.href) && current !== '/' ? 'text-[var(--color-ink)]' : 'text-[var(--color-ink-soft)]'
+          ]}>{l.label}</a>
+        </li>
+      ))}
+    </ul>
+    <div class="flex items-center gap-3">
+      <a href="/english/" class="hidden md:inline text-sm text-[var(--color-ink-soft)] hover:text-[var(--color-ink)] transition">EN</a>
+      <a href="https://www.facebook.com/groups/teslaclubportugal" target="_blank" rel="noopener" class="text-sm font-semibold px-4 py-1.5 bg-[var(--color-ink)] text-white rounded-full hover:bg-black transition">
+        Junta-te
+      </a>
+    </div>
+  </nav>
+</header>
