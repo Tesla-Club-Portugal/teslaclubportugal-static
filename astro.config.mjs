@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  site: 'https://teslaclubportugal-static-v2.pages.dev',
+  site: 'https://teslaclubportugal.com',
   trailingSlash: 'always',
   build: {
     format: 'directory',
