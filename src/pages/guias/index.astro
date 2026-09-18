@@ -1,0 +1,37 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+
+const guides = [
+  {
+    href: '/guias/carregamento/',
+    title: 'Carregamento em Portugal',
+    excerpt: 'Como carregar em casa, pela Mobi.E, e o que precisas de saber sobre potência contratada, trifásico vs monofásico.',
+  },
+  {
+    href: '/superchargers/',
+    title: 'Superchargers',
+    excerpt: 'Mapa e detalhes técnicos da rede Tesla no país — V2, V3, V3.5 e V4.',
+  },
+];
+---
+<PageLayout
+  title="Guias — Tesla Club Portugal"
+  description="Guias práticos escritos por membros do Tesla Club Portugal: carregamento em casa, superchargers, viagens longas, escolha de modelo."
+  eyebrow="Recursos"
+  headline="Guias práticos, escritos por membros."
+  intro="Informação directa e sem ruído comercial — desde a primeira ligação em casa até viagens longas pela Europa."
+>
+  <div class="not-prose grid gap-5 mt-4">
+    {guides.map(g => (
+      <a href={g.href} class="block rounded-2xl border border-[var(--color-line)] p-6 hover:border-[var(--color-ink)] transition group">
+        <h3 class="text-xl font-semibold text-[var(--color-ink)] group-hover:text-[var(--color-accent)] transition">{g.title}</h3>
+        <p class="mt-2 text-[var(--color-ink-soft)]">{g.excerpt}</p>
+      </a>
+    ))}
+  </div>
+
+  <h2>Vais escrever um guia?</h2>
+  <p>
+    Se és membro e queres contribuir com um novo guia, fala connosco no <a href="https://www.facebook.com/groups/teslaclubportugal">grupo Facebook</a>. Vê também <a href="/sobre-nos/como-posso-ajudar/">como ajudar</a>.
+  </p>
+</PageLayout>

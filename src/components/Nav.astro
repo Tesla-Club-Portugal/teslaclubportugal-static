@@ -1,0 +1,36 @@
+---
+const links = [
+  { href: '/sobre-nos/',              label: 'Clube' },
+  { href: '/guias/',                  label: 'Guias' },
+  { href: '/superchargers/',          label: 'Superchargers' },
+  { href: '/parcerias/',              label: 'Parcerias' },
+  { href: '/faq/',                    label: 'FAQ' },
+  { href: '/my-blog/',                label: 'Blog' },
+];
+const current = Astro.url.pathname;
+---
+<header class="fixed inset-x-0 top-0 z-50 backdrop-blur-md bg-white/70 border-b border-[var(--color-line)]/60">
+  <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 h-14" aria-label="Principal">
+    <a href="/" class="flex items-center gap-2 font-semibold text-[var(--color-ink)] tracking-tight" aria-label="Tesla Club Portugal — Início">
+      <svg width="28" height="20" viewBox="0 0 342 35" fill="currentColor" aria-hidden="true" class="text-[var(--color-accent)]">
+        <path d="M0,.1a9.7,9.7,0,0,0,7.3,7.3h11l.5.2V34.4h6.9V7.6L26.2,7.4h11A9.6,9.6,0,0,0,44.5.1h0V0H0V.1M62.2,34.4H83.1a11.4,11.4,0,0,0,7.2-6H55.2a11.4,11.4,0,0,0,7,6M83.1,20.6H62.2a12.1,12.1,0,0,0-7,6H90.3a11.4,11.4,0,0,0-7.2-6M83.1,12.6a11.4,11.4,0,0,0,7.2-6h-35a11.4,11.4,0,0,0,7,6H83.1M129.2,34.4a10.9,10.9,0,0,0,7-6H108.3v-28h-6.9v28h27.8M175.3,7.4A11.7,11.7,0,0,0,181,.1h-33a11.7,11.7,0,0,0,5.7,7.3h12.9v27h6.9v-27h11.8M199,7.4h20.9c5.3-1.4,7-7.3,7-7.3H192.1a11.5,11.5,0,0,0,7,6M192.1,20.6h20.9a11.4,11.4,0,0,0,7-6H185a11.4,11.4,0,0,0,7.1,6M192.1,34.4h20.9a11.4,11.4,0,0,0,7-6H185a11.4,11.4,0,0,0,7.1,6M258.7,20.6h34a11.4,11.4,0,0,0,7-6H265.6a11.4,11.4,0,0,0-6.9,6M258.7,34.4h34a11.4,11.4,0,0,0,7-6H265.6a11.4,11.4,0,0,0-6.9,6M258.7,7.4h34a11.4,11.4,0,0,0,7-7.3H265.6a11.4,11.4,0,0,0-6.9,7.3M312.2,7.4H327c-7.8,3.6-14.9,20.4-14.9,20.4S320.4,10.5,335,10.5c8.9,0,7.1,3.6,3.6,10.9-5.3,10.9-14.5,13-14.5,13H305.6a11.4,11.4,0,0,1,6.6-27"/>
+      </svg>
+      <span>PORTUGAL</span>
+    </a>
+    <ul class="hidden md:flex items-center gap-1 text-sm font-medium">
+      {links.map(l => (
+        <li>
+          <a href={l.href} class:list={["px-3 py-1.5 rounded-full transition hover:bg-[var(--color-ink)]/5",
+            current.startsWith(l.href) && current !== '/' ? 'text-[var(--color-ink)]' : 'text-[var(--color-ink-soft)]'
+          ]}>{l.label}</a>
+        </li>
+      ))}
+    </ul>
+    <div class="flex items-center gap-3">
+      <a href="/english/" class="hidden md:inline text-sm text-[var(--color-ink-soft)] hover:text-[var(--color-ink)] transition">EN</a>
+      <a href="https://www.facebook.com/groups/teslaclubportugal" target="_blank" rel="noopener" class="text-sm font-semibold px-4 py-1.5 bg-[var(--color-ink)] text-white rounded-full hover:bg-black transition">
+        Junta-te
+      </a>
+    </div>
+  </nav>
+</header>

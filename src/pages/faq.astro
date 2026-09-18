@@ -1,0 +1,72 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const faqs = [
+  {
+    q: 'Que acessórios de carregamento vêm incluídos com o Tesla?',
+    a: 'O cabo Type 2, que permite carregar nos postos públicos AC (corrente alternada).',
+  },
+  {
+    q: 'Como faço o carregamento em casa?',
+    a: 'Três opções principais: <strong>Tomada Schuko</strong> (3 kW, lento mas universal, requer apenas 3.45 kVA contratados); <strong>Tesla Wall Connector</strong> ou outra Wall Box (3.7 a 22 kW, com cabo dedicado); <strong>Tomada industrial CEE</strong> (com o Mobile Connector Tesla). Para 7.4 kW precisas 10.35 kVA; para 11 kW precisas trifásico.',
+  },
+  {
+    q: 'É preciso alterar a potência contratada em casa ou trocar para trifásico?',
+    a: 'O carro carrega com qualquer potência ou tipo de contador. Monofásico chega até 7.4 kW; para 11 kW precisas trifásico. A escolha depende do teu uso — se percorres 20 km/dia, 3 kW nocturnos chegam.',
+  },
+  {
+    q: 'Quanto tempo demoro a carregar o carro?',
+    a: 'Depende do posto e da bateria. Aproximado, de 10% a 90%:<br><br>' +
+       '• <strong>Tomada Schuko (3 kW)</strong>: 20–26 h<br>' +
+       '• <strong>Wall Connector 3.7 kW</strong>: 17–23 h<br>' +
+       '• <strong>Wall Connector 7.4 kW</strong>: 8–12 h<br>' +
+       '• <strong>Wall Connector 11 kW</strong>: 7–8 h<br>' +
+       '• <strong>Wall Connector 16.5 kW</strong>: 4–5 h<br>' +
+       '• <strong>Rápido público 50 kW</strong>: 1h45–2h<br>' +
+       '• <strong>Supercharger (20–80%)</strong>: 36–40 min<br><br>' +
+       'Na prática, carregas de noite o que gastaste de dia — o tempo "de carregamento" para o dia-a-dia é zero.',
+  },
+  {
+    q: 'Existem incentivos na compra de um Tesla?',
+    a: 'Sim, mas variam de ano para ano. Consulta a <a href="https://github.com/jonasman/teslaclubportugal#existem-incentivos-na-compra-de-um-tesla" target="_blank" rel="noopener">FAQ do jonasman no GitHub</a>, mantida por um membro do clube.',
+  },
+];
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(f => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a.replace(/<[^>]+>/g, '') },
+  })),
+};
+---
+<BaseLayout
+  title="FAQ — perguntas frequentes | Tesla Club Portugal"
+  description="Respostas às perguntas mais comuns sobre ter um Tesla em Portugal: carregamento em casa, Superchargers, potência contratada, tempo de carga, incentivos."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+
+  <header class="max-w-4xl mx-auto px-6 pt-8 pb-14 md:pt-16 md:pb-20">
+    <p class="text-sm font-semibold tracking-widest text-[var(--color-accent)] uppercase">Suporte</p>
+    <h1 class="mt-3 text-4xl md:text-6xl font-bold tracking-[-0.03em] leading-[1.05] text-[var(--color-ink)]">
+      Perguntas frequentes.
+    </h1>
+    <p class="mt-5 text-lg md:text-xl text-[var(--color-ink-soft)] leading-relaxed max-w-3xl">
+      Respostas rápidas e directas sobre o que mais nos perguntam. Se falta alguma, pergunta no <a href="https://www.facebook.com/groups/teslaclubportugal" class="text-[var(--color-accent)] underline underline-offset-4">grupo Facebook</a>.
+    </p>
+  </header>
+
+  <section class="max-w-3xl mx-auto px-6 pb-24 space-y-3">
+    {faqs.map((f, i) => (
+      <details class="group rounded-2xl border border-[var(--color-line)] hover:border-[var(--color-ink)] transition" open={i === 0}>
+        <summary class="cursor-pointer list-none px-6 py-5 flex items-start justify-between gap-4 font-semibold text-[var(--color-ink)]">
+          <span class="text-lg leading-snug">{f.q}</span>
+          <span class="mt-0.5 text-[var(--color-ink-muted)] group-open:rotate-45 transition-transform text-2xl leading-none" aria-hidden="true">+</span>
+        </summary>
+        <div class="px-6 pb-6 text-[var(--color-ink-soft)] leading-relaxed" set:html={f.a} />
+      </details>
+    ))}
+  </section>
+</BaseLayout>
