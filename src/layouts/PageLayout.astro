@@ -18,8 +18,8 @@ const { eyebrow, headline, intro, ...seo } = Astro.props;
 const h1 = headline ?? seo.title.replace(/, .*$/, '');
 ---
 <BaseLayout {...seo}>
-  <div class="max-w-3xl mx-auto px-6">
-    <header class="pt-8 pb-14 md:pt-16 md:pb-20">
+  <section class="bg-[var(--color-surface-alt)] border-b border-[var(--color-line)]">
+    <div class="max-w-3xl mx-auto px-6 py-10 md:py-20">
       {eyebrow && (
         <p class="text-sm font-semibold tracking-widest text-[var(--color-accent)] uppercase">{eyebrow}</p>
       )}
@@ -29,8 +29,10 @@ const h1 = headline ?? seo.title.replace(/, .*$/, '');
       {intro && (
         <p class="mt-5 text-lg md:text-xl text-[var(--color-ink-soft)] leading-relaxed">{intro}</p>
       )}
-    </header>
-    <article class="prose">
+    </div>
+  </section>
+  <div class="max-w-3xl mx-auto px-6">
+    <article class="prose pt-10 md:pt-16 pb-24">
       <slot />
     </article>
   </div>

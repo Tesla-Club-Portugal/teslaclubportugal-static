@@ -48,25 +48,29 @@ const faqLd = {
 >
   <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
 
-  <header class="max-w-4xl mx-auto px-6 pt-8 pb-14 md:pt-16 md:pb-20">
-    <p class="text-sm font-semibold tracking-widest text-[var(--color-accent)] uppercase">Suporte</p>
-    <h1 class="mt-3 text-4xl md:text-6xl font-bold tracking-[-0.03em] leading-[1.05] text-[var(--color-ink)]">
-      Perguntas frequentes.
-    </h1>
-    <p class="mt-5 text-lg md:text-xl text-[var(--color-ink-soft)] leading-relaxed max-w-3xl">
-      Respostas rápidas e directas sobre o que mais nos perguntam. Se falta alguma, pergunta no <a href="https://www.facebook.com/groups/teslaclubportugal" class="text-[var(--color-accent)] underline underline-offset-4">grupo Facebook</a>.
-    </p>
-  </header>
-
-  <section class="max-w-3xl mx-auto px-6 pb-24 space-y-3">
-    {faqs.map((f, i) => (
-      <details class="group rounded-2xl border border-[var(--color-line)] hover:border-[var(--color-ink)] transition" open={i === 0}>
-        <summary class="cursor-pointer list-none px-6 py-5 flex items-start justify-between gap-4 font-semibold text-[var(--color-ink)]">
-          <span class="text-lg leading-snug">{f.q}</span>
-          <span class="mt-0.5 text-[var(--color-ink-muted)] group-open:rotate-45 transition-transform text-2xl leading-none" aria-hidden="true">+</span>
-        </summary>
-        <div class="px-6 pb-6 text-[var(--color-ink-soft)] leading-relaxed" set:html={f.a} />
-      </details>
-    ))}
+  <section class="bg-[var(--color-surface-alt)] border-b border-[var(--color-line)]">
+    <div class="max-w-3xl mx-auto px-6 py-10 md:py-20">
+      <p class="text-sm font-semibold tracking-widest text-[var(--color-accent)] uppercase">Suporte</p>
+      <h1 class="mt-3 text-4xl md:text-6xl font-bold tracking-[-0.03em] leading-[1.05] text-[var(--color-ink)]">
+        Perguntas frequentes.
+      </h1>
+      <p class="mt-5 text-lg md:text-xl text-[var(--color-ink-soft)] leading-relaxed">
+        Respostas rápidas e directas sobre o que mais nos perguntam. Se falta alguma, pergunta no <a href="https://www.facebook.com/groups/teslaclubportugal" class="text-[var(--color-accent)] underline underline-offset-4">grupo Facebook</a>.
+      </p>
+    </div>
   </section>
+
+  <div class="max-w-3xl mx-auto px-6">
+    <section class="pt-10 md:pt-16 pb-24 space-y-3">
+      {faqs.map((f, i) => (
+        <details class="group rounded-2xl border border-[var(--color-line)] hover:border-[var(--color-ink)] transition" open={i === 0}>
+          <summary class="cursor-pointer list-none px-6 py-5 flex items-start justify-between gap-4 font-semibold text-[var(--color-ink)]">
+            <span class="text-lg leading-snug">{f.q}</span>
+            <span class="mt-0.5 text-[var(--color-ink-muted)] group-open:rotate-45 transition-transform text-2xl leading-none" aria-hidden="true">+</span>
+          </summary>
+          <div class="px-6 pb-6 text-[var(--color-ink-soft)] leading-relaxed" set:html={f.a} />
+        </details>
+      ))}
+    </section>
+  </div>
 </BaseLayout>
