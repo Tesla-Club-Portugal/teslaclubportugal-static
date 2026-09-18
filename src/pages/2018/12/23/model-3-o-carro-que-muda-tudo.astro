@@ -7,10 +7,20 @@ import PageLayout from '../../../../layouts/PageLayout.astro';
   eyebrow="Blog · 23 de Dezembro de 2018"
   headline="Model 3, o carro que muda tudo."
   intro="Agora que chegou o Model 3 ainda achas que os eléctricos são caros? Comparação directa com BMW Série 3 e Mercedes Classe C, resultados embaraçosos para os concorrentes a combustão."
+  image="/wp-content/uploads/2018/12/Model-3-1024x481.jpg"
   type="article"
   publishedAt="2018-12-23T21:39:22+00:00"
   modifiedAt="2019-11-16T19:14:45+00:00"
 >
+  <figure class="not-prose my-8 -mx-6 md:mx-0">
+    <img src="/wp-content/uploads/2018/12/Model-3-1024x481.jpg"
+         srcset="/wp-content/uploads/2018/12/Model-3-768x360.jpg 768w, /wp-content/uploads/2018/12/Model-3-1024x481.jpg 1024w, /wp-content/uploads/2018/12/Model-3.jpg 1600w"
+         sizes="(max-width: 768px) 100vw, 768px"
+         alt="Tesla Model 3 fotografado de frente, em ambiente urbano, com farol activo."
+         width="1024" height="481"
+         class="w-full h-auto md:rounded-2xl" loading="eager" decoding="async" />
+  </figure>
+
   <h2>Objectivo</h2>
   <p>
     Análise comparativa do Tesla Model 3 face aos do mesmo segmento a combustão, BMW Série 3 e Mercedes Classe C, em termos de custo económico e ambiental até aos 5 anos de utilização, para a realidade portuguesa.
@@ -27,6 +37,15 @@ import PageLayout from '../../../../layouts/PageLayout.astro';
   <p>
     Em vez do BMW 335d ou Classe C 300d (equiparados em performance), comparámos com os mais populares 320d e C220d, cujos preços são também mais simpáticos, precisamente porque o grande mito é os eléctricos serem "muito caros".
   </p>
+
+  <figure class="not-prose my-8">
+    <img src="/wp-content/uploads/2019/11/48427033_208710853343014_3123972152399757312_n.png"
+         alt="Quadro I: comparação de custo total ao fim de 5 anos entre Tesla Model 3 Long Range, BMW 320d e Mercedes C220d, para 20 000 km/ano."
+         class="w-full h-auto rounded-2xl border border-[var(--color-line)]"
+         loading="lazy" decoding="async" />
+    <figcaption class="mt-2 text-sm text-[var(--color-ink-muted)] text-center">Quadro I. Model 3 Long Range vs BMW 320d vs Mercedes C220d, custo total 5 anos.</figcaption>
+  </figure>
+
   <p>
     Considerando <strong>20&nbsp;000 km anuais</strong>, o Model 3 Long Range carregado à noite em casa começa a ficar mais barato que a concorrência antes dos 3 anos, e daí em diante torna-se imparável. A electricidade é ~5× mais barata que combustível para a mesma distância, e o eléctrico beneficia de isenção de IUC.
   </p>
@@ -38,14 +57,48 @@ import PageLayout from '../../../../layouts/PageLayout.astro';
   <p>
     Não dá hipótese aos BMW M4 e Mercedes-AMG C 63. Performance em linha em potência e binário, e deixa-os para trás na aceleração, <strong>3,5 s 0–100 km/h</strong>. E isto porque bastam 20 milissegundos para todo o binário chegar às rodas ao carregar no pedal.
   </p>
+
+  <figure class="not-prose my-8">
+    <img src="/wp-content/uploads/2019/11/77156000_2380265365617398_625078072697159680_n.png"
+         alt="Quadro II: comparação de custo total ao fim de 5 anos entre Tesla Model 3 Performance, BMW M4 e Mercedes-AMG C 63."
+         class="w-full h-auto rounded-2xl border border-[var(--color-line)]"
+         loading="lazy" decoding="async" />
+    <figcaption class="mt-2 text-sm text-[var(--color-ink-muted)] text-center">Quadro II. Model 3 Performance vs BMW M4 vs AMG C 63.</figcaption>
+  </figure>
+
   <p>
     No preço nem vale comentar: base 71&nbsp;300 € (sem incentivo) vs 110&nbsp;000+ € dos concorrentes a combustão. A diferença acentua-se a cada ano que passa.
   </p>
+
+  <figure class="not-prose my-8">
+    <img src="/wp-content/uploads/2018/12/TM3-vs-BMW-vs-MBenz-Notas.png"
+         alt="Notas metodológicas da comparação Model 3 vs concorrentes a combustão."
+         class="w-full h-auto rounded-2xl border border-[var(--color-line)]"
+         loading="lazy" decoding="async" />
+    <figcaption class="mt-2 text-sm text-[var(--color-ink-muted)] text-center">Notas de cálculo utilizadas nos quadros acima.</figcaption>
+  </figure>
 
   <h2>Questão ambiental</h2>
   <p>
     Considerando as emissões médias da energia elétrica nacional, aos 5 anos o Tesla poupou entre <strong>10 a 23 toneladas de CO₂</strong>. Multiplicado por milhões de utilizadores, o impacto é enorme.
   </p>
+
+  <figure class="not-prose my-8 grid md:grid-cols-2 gap-4">
+    <div>
+      <img src="/wp-content/uploads/2018/12/Superchargers-1024x728.png"
+           alt="Mapa da rede de Superchargers Tesla à data da publicação (Dezembro 2018)."
+           class="w-full h-auto rounded-2xl border border-[var(--color-line)]"
+           loading="lazy" decoding="async" />
+      <figcaption class="mt-2 text-sm text-[var(--color-ink-muted)] text-center">Rede Supercharger em 2018.</figcaption>
+    </div>
+    <div>
+      <img src="/wp-content/uploads/2018/12/Países.png"
+           alt="Emissões médias de CO₂ da produção de electricidade por país europeu."
+           class="w-full h-auto rounded-2xl border border-[var(--color-line)]"
+           loading="lazy" decoding="async" />
+      <figcaption class="mt-2 text-sm text-[var(--color-ink-muted)] text-center">Emissões da produção de electricidade, por país.</figcaption>
+    </div>
+  </figure>
 
   <h2>Conclusão</h2>
   <p>
