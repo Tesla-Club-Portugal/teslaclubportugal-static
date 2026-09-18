@@ -1,0 +1,90 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+type Member = {
+  name: string;
+  photo?: string;
+};
+
+// Actualiza aqui: para adicionar uma foto real, mete o ficheiro em
+// public/images/team/nome.jpg e adiciona `photo: '/images/team/nome.jpg'`.
+const team: Member[] = [
+  { name: 'Hugo Pinto',       photo: '/images/team/hugo-pinto.jpg' },
+  { name: 'João Nunes',       photo: '/images/team/joao-nunes.jpg' },
+  { name: 'Sérgio Costa',     photo: '/images/team/sergio-costa.jpg' },
+  { name: 'Diana Freytag',    photo: '/images/team/diana-freytag.jpg' },
+  { name: 'Bruno Figueiredo', photo: '/images/team/bruno-figueiredo.jpg' },
+];
+
+function initials(name: string): string {
+  const parts = name.trim().split(/\s+/);
+  return (parts[0][0] + (parts[parts.length - 1][0] ?? '')).toUpperCase();
+}
+---
+<BaseLayout
+  title="A equipa | Tesla Club Portugal"
+  description="Os administradores voluntários que mantêm o Tesla Club Portugal. Todos donos de Teslas, todos a doar tempo ao clube fora do trabalho."
+>
+  <section class="bg-[var(--color-surface-alt)] border-b border-[var(--color-line)]">
+    <div class="max-w-5xl mx-auto px-6 pt-28 pb-10 md:pt-36 md:pb-20">
+      <div class="max-w-3xl">
+        <p class="text-sm font-semibold tracking-widest text-[var(--color-accent)] uppercase">Sobre o clube</p>
+        <h1 class="mt-3 text-4xl md:text-6xl font-bold tracking-[-0.03em] leading-[1.05] text-[var(--color-ink)]">
+          A equipa.
+        </h1>
+        <p class="mt-5 text-lg md:text-xl text-[var(--color-ink-soft)] leading-relaxed">
+          Administradores voluntários. Todos donos de Teslas, todos a doar tempo ao clube fora do trabalho.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-5xl mx-auto px-6 pt-10 md:pt-16 pb-16">
+    <ul class="grid gap-8 sm:grid-cols-2 md:grid-cols-3">
+      {team.map(m => (
+        <li class="text-center">
+          <div class="mx-auto w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden bg-[var(--color-surface-alt)] flex items-center justify-center ring-1 ring-[var(--color-line)]">
+            {m.photo ? (
+              <img src={m.photo} alt={`Foto de ${m.name}`} width="320" height="320" loading="lazy" decoding="async" class="w-full h-full object-cover" />
+            ) : (
+              <span aria-hidden="true" class="text-3xl md:text-4xl font-semibold tracking-tight text-[var(--color-ink-muted)] select-none">
+                {initials(m.name)}
+              </span>
+            )}
+          </div>
+          <h2 class="mt-5 text-lg font-semibold text-[var(--color-ink)]">{m.name}</h2>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="max-w-5xl mx-auto px-6 pb-16">
+    <h2 class="text-sm font-semibold tracking-widest text-[var(--color-ink-muted)] uppercase text-center mb-8">Anteriormente</h2>
+    <ul class="flex justify-center">
+      <li class="text-center">
+        <div class="mx-auto w-24 h-24 md:w-28 md:h-28 rounded-full overflow-hidden bg-[var(--color-surface-alt)] flex items-center justify-center ring-1 ring-[var(--color-line)] opacity-80">
+          <img src="/images/team/helder-aguiar.jpg" alt="Foto de Hélder Aguiar" width="224" height="224" loading="lazy" decoding="async" class="w-full h-full object-cover grayscale" />
+        </div>
+        <p class="mt-4 text-base font-medium text-[var(--color-ink-soft)]">Hélder Aguiar</p>
+      </li>
+    </ul>
+  </section>
+
+  <section class="max-w-5xl mx-auto px-6 pb-24">
+    <div class="max-w-3xl prose">
+    <p>
+      O Tesla Club Portugal é gerido por estas cinco pessoas. Não há hierarquia rígida, as decisões (parcerias, políticas do grupo, prioridades do site) são tomadas em conjunto e sempre no interesse dos membros. Ninguém recebe compensação. Não há publicidade, não há afiliações comerciais com a Tesla, Inc.
+    </p>
+
+    <h2>Contactos</h2>
+    <p>
+      A forma mais rápida de nos contactar é pelo <a href="https://www.facebook.com/groups/teslaclubportugal">grupo do Facebook</a>. Para parcerias empresariais ou imprensa, envia mensagem privada ao grupo com o assunto no início do texto.
+    </p>
+
+    <h2>Queres ajudar?</h2>
+    <p>
+      Somos poucos, sempre há trabalho por fazer, escrever guias, atualizar dados, moderar. Vê <a href="/sobre-nos/como-posso-ajudar/">como podes contribuir</a>.
+    </p>
+    </div>
+  </section>
+</BaseLayout>

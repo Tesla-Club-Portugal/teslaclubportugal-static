@@ -1,0 +1,136 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const hero = '/images/hero-5-teslas-1600.jpg';
+const heroSrcset = [
+  { w: 800,  src: '/images/hero-5-teslas-800.jpg' },
+  { w: 1200, src: '/images/hero-5-teslas-1200.jpg' },
+  { w: 1600, src: '/images/hero-5-teslas-1600.jpg' },
+  { w: 2400, src: '/images/hero-5-teslas-2400.jpg' },
+]
+  .map(s => `${s.src} ${s.w}w`)
+  .join(', ');
+
+const pillars = [
+  {
+    title: 'Guias práticos',
+    body: 'Como carregar em casa, viagens longas, escolher o modelo. Escrito por quem já cá está.',
+    href: '/guias/',
+  },
+  {
+    title: 'Superchargers',
+    body: 'Onde estão, que potência têm, e como funciona a rede Tesla em Portugal.',
+    href: '/superchargers/',
+  },
+  {
+    title: 'Descontos para membros',
+    body: 'Parcerias com empresas nacionais: películas, detalhe, wall boxes, carregadores.',
+    href: '/parcerias/',
+  },
+];
+---
+<BaseLayout
+  title="Tesla Club Portugal, clube de fãs Tesla em Portugal"
+  description="Somos donos de Teslas em Portugal e futuros donos. Comunidade desde 2018, sem publicidade nem afiliação comercial. Guias, superchargers, parcerias e apoio entre membros."
+  image={hero}
+  fullBleed
+>
+  <!-- Hero -->
+  <section class="relative w-full pt-16" aria-labelledby="hero-title">
+    <div class="relative w-full" style="aspect-ratio: 5 / 3;">
+      <img
+        src={hero}
+        srcset={heroSrcset}
+        sizes="100vw"
+        alt="Cinco Teslas em Portugal alinhados frente a frente. Um Model S preto, um Model 3 azul, um Model X azul com portas gullwing abertas, um Model S azul e um Model 3 vermelho, todos com matrícula portuguesa, fotografados por membros do Tesla Club Portugal."
+        class="absolute inset-0 h-full w-full object-cover object-center"
+        fetchpriority="high"
+        loading="eager"
+        decoding="async"
+        width="2000"
+        height="1201"
+      />
+      <div class="pointer-events-none absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+      <div class="absolute inset-x-0 bottom-0 z-10 text-center text-white px-6 pb-[6%] md:pb-[4%]">
+        <h1 id="hero-title" class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-[-0.03em] leading-[1.02] drop-shadow-lg">
+          Tesla Club Portugal
+        </h1>
+        <p class="mt-3 md:mt-4 text-sm sm:text-base md:text-lg text-white/90 max-w-2xl mx-auto drop-shadow">
+          Fãs, donos, e quem está a pensar em comprar. Uma comunidade portuguesa em torno da marca desde 2018.
+        </p>
+        <div class="mt-5 md:mt-7 flex flex-col sm:flex-row gap-3 justify-center">
+          <a href="/sobre-nos/" class="btn btn-dark">Conhecer o clube</a>
+          <a href="https://www.facebook.com/groups/teslaclubportugal" target="_blank" rel="noopener" class="btn btn-light">Junta-te ao grupo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Value pillars -->
+  <section class="max-w-7xl mx-auto px-6 py-24 md:py-32">
+    <div class="max-w-3xl">
+      <p class="text-sm font-semibold tracking-widest text-[var(--color-accent)] uppercase">O que fazemos</p>
+      <h2 class="mt-3 text-3xl md:text-5xl font-bold tracking-tight text-[var(--color-ink)]">
+        Um clube feito pelos próprios membros.
+      </h2>
+      <p class="mt-5 text-lg text-[var(--color-ink-soft)] leading-relaxed">
+        Ajudamos quem quer comprar um Tesla, quem já tem, e quem só quer perceber. Sem interesse comercial. Tudo escrito por gente que anda a conduzir estes carros no dia a dia.
+      </p>
+    </div>
+    <div class="mt-14 grid md:grid-cols-3 gap-8">
+      {pillars.map(p => (
+        <a href={p.href} class="group block rounded-2xl border border-[var(--color-line)] p-8 hover:border-[var(--color-ink)] transition">
+          <h3 class="text-xl font-semibold text-[var(--color-ink)]">{p.title}</h3>
+          <p class="mt-3 text-[var(--color-ink-soft)] leading-relaxed">{p.body}</p>
+          <span class="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-[var(--color-accent)] group-hover:gap-2 transition-all">
+            Ver <span aria-hidden="true">→</span>
+          </span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Story strip (dark section) — vertical stack: eyebrow → title → body → counters → CTA -->
+  <section class="bg-[var(--color-ink)] text-white">
+    <div class="max-w-4xl mx-auto px-6 py-24 md:py-32 text-center">
+      <p class="text-sm font-semibold tracking-widest text-[var(--color-accent)] uppercase">Desde 2017</p>
+      <h2 class="mt-3 text-3xl md:text-5xl font-bold tracking-tight leading-tight">
+        A Tesla chegou a Portugal em 2017.<br/>O clube começou logo a seguir.
+      </h2>
+      <p class="mt-6 text-lg text-white/75 leading-relaxed max-w-2xl mx-auto">
+        Começámos no Facebook, entre os primeiros donos portugueses. Fomos crescendo com cada novo Tesla que aparecia nas estradas. Hoje é onde os fãs portugueses se encontram para tirar dúvidas, partilhar viagens, e organizar encontros.
+      </p>
+      <div class="mt-12 grid grid-cols-3 gap-3 md:gap-4 max-w-2xl mx-auto">
+        <div class="rounded-2xl bg-white/5 border border-white/10 p-5 md:p-6">
+          <div class="text-3xl md:text-5xl font-bold">2018</div>
+          <div class="mt-2 text-xs md:text-sm text-white/70 uppercase tracking-widest">Fundação</div>
+        </div>
+        <div class="rounded-2xl bg-white/5 border border-white/10 p-5 md:p-6">
+          <div class="text-3xl md:text-5xl font-bold">5</div>
+          <div class="mt-2 text-xs md:text-sm text-white/70 uppercase tracking-widest">Administradores</div>
+        </div>
+        <div class="rounded-2xl bg-white/5 border border-white/10 p-5 md:p-6">
+          <div class="text-3xl md:text-5xl font-bold">100%</div>
+          <div class="mt-2 text-xs md:text-sm text-white/70 uppercase tracking-widest">Voluntário</div>
+        </div>
+      </div>
+      <div class="mt-12">
+        <a href="/sobre-nos/" class="btn btn-light">Ler a história</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="max-w-4xl mx-auto px-6 py-24 md:py-32 text-center">
+    <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-[var(--color-ink)]">
+      A pensar comprar um Tesla?
+    </h2>
+    <p class="mt-4 text-lg text-[var(--color-ink-soft)] max-w-2xl mx-auto">
+      Passa pelo grupo antes de assinares. Perguntas rápidas, respostas honestas de quem já passou por isso.
+    </p>
+    <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+      <a href="https://www.facebook.com/groups/teslaclubportugal" target="_blank" rel="noopener" class="btn" style="background:var(--color-ink);color:white;">Grupo Facebook</a>
+      <a href="/faq/" class="btn" style="background:var(--color-surface-alt);color:var(--color-ink);">Ver FAQ</a>
+    </div>
+  </section>
+</BaseLayout>
