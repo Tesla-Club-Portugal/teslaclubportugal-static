@@ -1,0 +1,23 @@
+# Legacy WordPress content URLs → new /media/ paths (preserve external hotlinks)
+/wp-content/uploads/*   /media/:splat   301
+
+# Old WP admin surface — no longer exists
+/wp-admin/*             /   301
+/wp-admin               /   301
+/wp-login.php           /   301
+/wp-json/*              /   301
+/xmlrpc.php             /   410
+
+# Any other old wp-content paths (cache bundles, plugin/theme assets) → home
+/wp-content/*           /   301
+
+# WP artifacts we don't serve on the static site
+/author/*               /   301
+/comments/*             /   301
+/feed/*                 /   301
+
+# Dead forum → homepage
+/community/*            /   301
+/community              /   301
+/forums/*               /   301
+/forums                 /   301
