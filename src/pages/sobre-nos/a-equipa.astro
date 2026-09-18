@@ -1,27 +1,105 @@
 ---
-import PageLayout from '../../layouts/PageLayout.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+type Member = {
+  name: string;
+  role?: string;
+  url: string;
+  photo?: string;
+};
+
+// Actualiza aqui: para adicionar uma foto real, mete o ficheiro em
+// public/images/team/nome.jpg e adiciona `photo: '/images/team/nome.jpg'`.
+const team: Member[] = [
+  {
+    name: 'Hugo Pinto',
+    role: 'Fundador',
+    url: 'https://www.linkedin.com/in/hugopinto/',
+  },
+  {
+    name: 'João Nunes',
+    url: 'https://github.com/jonasman',
+    photo: '/images/team/joao-nunes.jpg',
+  },
+  {
+    name: 'Sérgio Costa',
+    url: 'https://www.linkedin.com/in/s%C3%A9rgio-costa-b86039a4/',
+  },
+  {
+    name: 'Diana Freytag',
+    url: 'https://www.facebook.com/diana.anastacio',
+  },
+  {
+    name: 'Bruno Figueiredo',
+    url: 'https://www.facebook.com/bruno.figueiredo.52206654/',
+  },
+];
+
+function initials(name: string): string {
+  const parts = name.trim().split(/\s+/);
+  return (parts[0][0] + (parts[parts.length - 1][0] ?? '')).toUpperCase();
+}
 ---
-<PageLayout
-  title="A Equipa, Tesla Club Portugal"
-  description="Conhece os administradores voluntários que mantêm o Tesla Club Portugal, 6 pessoas apaixonadas pela marca, sem interesse comercial."
-  eyebrow="Sobre o clube"
-  headline="A equipa que mantém o clube."
-  intro="Seis administradores voluntários. Todos proprietários Tesla, todos com tempo dedicado ao clube fora do trabalho."
+<BaseLayout
+  title="A equipa | Tesla Club Portugal"
+  description="Os administradores voluntários que mantêm o Tesla Club Portugal. Todos donos de Teslas, todos a doar tempo ao clube fora do trabalho."
 >
-  <p>
-    O Tesla Club Portugal é administrado por proprietários que doam o seu tempo para manter a comunidade viva. Não recebemos compensação, não fazemos publicidade, e não temos afiliações comerciais com a Tesla, Inc.
-  </p>
-  <p>
-    A administração toma decisões colectivamente, desde parcerias a políticas do grupo, sempre no interesse dos membros.
-  </p>
+  <header class="max-w-4xl mx-auto px-6 pt-8 pb-12 md:pt-16 md:pb-16">
+    <p class="text-sm font-semibold tracking-widest text-[var(--color-accent)] uppercase">Sobre o clube</p>
+    <h1 class="mt-3 text-4xl md:text-6xl font-bold tracking-[-0.03em] leading-[1.05] text-[var(--color-ink)]">
+      A equipa.
+    </h1>
+    <p class="mt-5 text-lg md:text-xl text-[var(--color-ink-soft)] leading-relaxed max-w-3xl">
+      Administradores voluntários. Todos donos de Teslas, todos a doar tempo ao clube fora do trabalho.
+    </p>
+  </header>
 
-  <h2>Contactos</h2>
-  <p>
-    A forma mais rápida de nos contactar é através do <a href="https://www.facebook.com/groups/teslaclubportugal">grupo no Facebook</a>. Para parcerias empresariais ou imprensa, envia mensagem privada ao grupo com o assunto no início.
-  </p>
+  <section class="max-w-5xl mx-auto px-6 pb-16">
+    <ul class="grid gap-8 sm:grid-cols-2 md:grid-cols-3">
+      {team.map(m => (
+        <li>
+          <a href={m.url} target="_blank" rel="noopener"
+             class="group block text-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] rounded-2xl p-4">
+            <div class="mx-auto w-32 h-32 md:w-36 md:h-36 rounded-full overflow-hidden bg-[var(--color-surface-alt)] flex items-center justify-center ring-1 ring-[var(--color-line)] group-hover:ring-[var(--color-ink)] transition">
+              {m.photo ? (
+                <img src={m.photo} alt={`Foto de ${m.name}`} width="288" height="288" loading="lazy" decoding="async" class="w-full h-full object-cover" />
+              ) : (
+                <span aria-hidden="true" class="text-3xl md:text-4xl font-semibold tracking-tight text-[var(--color-ink-muted)] select-none">
+                  {initials(m.name)}
+                </span>
+              )}
+            </div>
+            <h2 class="mt-5 text-lg font-semibold text-[var(--color-ink)] group-hover:text-[var(--color-accent)] transition">
+              {m.name}
+            </h2>
+            {m.role && (
+              <p class="mt-1 text-sm font-medium tracking-wide uppercase text-[var(--color-accent)]">
+                {m.role}
+              </p>
+            )}
+            <p class="mt-1 text-xs text-[var(--color-ink-muted)]">
+              {new URL(m.url).hostname.replace(/^www\./, '')}
+              <span aria-hidden="true" class="ml-1">↗</span>
+            </p>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
 
-  <h2>Queres ajudar?</h2>
-  <p>
-    Vê <a href="/sobre-nos/como-posso-ajudar/">como podes contribuir</a>. Sempre precisamos de mais mãos, escrever guias, atualizar dados, moderar discussões.
-  </p>
-</PageLayout>
+  <section class="max-w-3xl mx-auto px-6 pb-24 prose">
+    <p>
+      O Tesla Club Portugal é gerido por estas cinco pessoas. Não há hierarquia rígida, as decisões (parcerias, políticas do grupo, prioridades do site) são tomadas em conjunto e sempre no interesse dos membros. Ninguém recebe compensação. Não há publicidade, não há afiliações comerciais com a Tesla, Inc.
+    </p>
+
+    <h2>Contactos</h2>
+    <p>
+      A forma mais rápida de nos contactar é pelo <a href="https://www.facebook.com/groups/teslaclubportugal">grupo do Facebook</a>. Para parcerias empresariais ou imprensa, envia mensagem privada ao grupo com o assunto no início do texto.
+    </p>
+
+    <h2>Queres ajudar?</h2>
+    <p>
+      Somos poucos, sempre há trabalho por fazer, escrever guias, atualizar dados, moderar. Vê <a href="/sobre-nos/como-posso-ajudar/">como podes contribuir</a>.
+    </p>
+  </section>
+</BaseLayout>
