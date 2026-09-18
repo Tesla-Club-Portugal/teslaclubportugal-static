@@ -149,7 +149,7 @@ Português de Portugal. A secção `/english/` é a excepção, escrita em EN-GB
 
 ## Como funciona o deploy
 
-Cada push em `main` dispara um GitHub Action que faz build do site e envia para o Cloudflare Pages. O site actualiza em 1-2 minutos. Custa 0€ (Cloudflare Pages tier gratuito, sem limite de bandwidth).
+Cada push em `main` dispara um GitHub Action que faz build do site e envia para o Cloudflare Pages. O site actualiza em 1-2 minutos.
 
 Cada PR ganha um preview URL próprio (`<nome-da-branch>.teslaclubportugal-static-v2.pages.dev`) para veres a mudança antes de mergeares. O bot cola o link no PR.
 
@@ -173,7 +173,40 @@ Se algo correr mal e o site ficar partido, dá para reverter em 1 clique no dash
 - **[Cloudflare Pages](https://pages.cloudflare.com)** — hosting
 - **GitHub Actions** — CI e deploy
 
-Se usas agentes de IA (Claude Code, Cursor, Codex, Aider) para fazer alterações, o [AGENTS.md](AGENTS.md) tem as instruções técnicas que eles precisam de ler no arranque.
+## MDX, em duas palavras
+
+Podes ver referências a MDX pelo repo. É útil saber o que é, porque simplifica muito editar conteúdo se não quiseres tocar em `.astro`.
+
+**MDX = Markdown + JSX.** Ou seja, escreves em Markdown normal (parágrafos, títulos com `#`, negrito com `**`, links com `[texto](url)`) e, se precisares, mistas componentes ou HTML no meio. Um ficheiro `.mdx` parece assim:
+
+```mdx
+---
+title: O meu post
+description: O que quero mostrar aos motores de busca.
+date: 2026-09-20
+---
+
+# Título grande
+
+Isto é um parágrafo normal com um **negrito** e um [link](https://exemplo.pt).
+
+- Lista de coisas
+- Segunda coisa
+
+<Callout>Também posso meter componentes se precisar de blocos custom.</Callout>
+
+Continuo com Markdown normal por baixo.
+```
+
+O bloco entre `---` no topo chama-se **frontmatter**: são metadados (título, descrição, data). O resto do ficheiro é o conteúdo. O Astro trata do resto: aplica o layout, gera o HTML, mete a página no site.
+
+**Quando é que faz sentido usar MDX (`.mdx`) em vez de Astro (`.astro`):**
+- Conteúdo puro (post de blog, página informativa) → **MDX é mais simples**, escrito como se estivesses no Notion
+- Conteúdo com muita lógica ou HTML custom → **Astro é mais poderoso** (permite JS no topo, imports, loops, componentes complexos)
+
+Neste repo, as páginas actuais estão em `.astro` porque foram migradas do WordPress com HTML custom (figuras, layouts especiais). Mas nada te impede de criar um post novo em `.mdx` se preferires escrever em Markdown limpo. Basta guardar o ficheiro com `.mdx` no mesmo sítio (`src/pages/YYYY/MM/DD/slug.mdx`) e adicionar ao array `posts` do índice.
+
+Se estás confortável em Markdown do GitHub (`README.md`, issues), já sabes 90% de MDX.
 
 ## Quem está por trás
 
