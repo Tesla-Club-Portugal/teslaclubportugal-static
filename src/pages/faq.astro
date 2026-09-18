@@ -3,32 +3,58 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 const faqs = [
   {
-    q: 'Que acessórios de carregamento vêm incluídos com o Tesla?',
-    a: 'O cabo Type 2, que permite carregar nos postos públicos AC (corrente alternada).',
+    q: 'Que acessórios de carregamento vêm incluídos com o carro?',
+    a: `
+      <p>Na compra de um Tesla vêm incluídos:</p>
+      <ul>
+        <li>Cabo de carregamento de série: permite carregar em qualquer tomada comum</li>
+        <li>Adaptador vermelho: permite ligar o cabo de série a tomadas industriais</li>
+        <li>Cabo tipo 2: permite carregar nos postos públicos em Portugal.</li>
+      </ul>
+    `,
   },
   {
     q: 'Como faço o carregamento em casa?',
-    a: 'Três opções principais: <strong>Tomada Schuko</strong> (3 kW, lento mas universal, requer apenas 3.45 kVA contratados); <strong>Tesla Wall Connector</strong> ou outra Wall Box (3.7 a 22 kW, com cabo dedicado); <strong>Tomada industrial CEE</strong> (com o Mobile Connector Tesla). Para 7.4 kW precisas 10.35 kVA; para 11 kW precisas trifásico.',
+    a: `
+      <p>O carregamento em casa pode ser feito de várias formas:</p>
+      <ul>
+        <li>Tomada comum (Shucko)</li>
+        <li>Tesla Wall Connector ou outra Wall Box</li>
+        <li>Tomada industrial</li>
+      </ul>
+      <p>A tomada comum é a solução mais acessível e globalmente disponível. A velocidade de carregamento é baixa (cerca de 3kW) mas, dependendo do perfil de utilização do carro, pode ser suficiente para carregar o que se utiliza de dia. Assumindo 10h como o tempo de carregamento noturno que dispomos, a tomada comum é capaz de carregar cerca de um terço da bateria de 100kWh ou quase metade da bateria de 75kWh. Esta solução tem a vantagem de ser compatível com baixas potências contratadas, desde 3,45kVA.</p>
+      <p>Para velocidades de carregamento maiores em casa, que permitam carregar a bateria integralmente durante a noite, a Tesla oferece a solução do Tesla Wall Connector, um dispositivo que permite potenciar a energia de carregamento para de 3.7 a 22kW e que tem um cabo dedicado para carregamento. Em alternativa, as tomadas industriais também permitem aumentar a velocidade de carregamento, mas sem a comodidade do cabo dedicado. Esta solução requer maiores potências contratadas em casa como pelo menos 10,35kVA, se o objetivo é carregar a 7.4kW, ou mais que isso, se o objetivo é carregar a 11kW.</p>
+      <p><a href="https://www.tesla.com/pt_PT/support/home-charging-installation" target="_blank" rel="noopener">Carregamento em casa</a></p>
+    `,
   },
   {
-    q: 'É preciso alterar a potência contratada em casa ou trocar para trifásico?',
-    a: 'O carro carrega com qualquer potência ou tipo de contador. Monofásico chega até 7.4 kW; para 11 kW precisas trifásico. A escolha depende do teu uso, se percorres 20 km/dia, 3 kW nocturnos chegam.',
+    q: 'É preciso alterar a potência contratada em casa ou alterar o tipo de contador (trifásico ou monofásico)?',
+    a: `
+      <p>O carro pode carregar com qualquer potência contratada ou tipo de contador (monofásico e trifásico).</p>
+      <p>Em relação à potência contratada, quanto maior esta for mais liberdade existirá na velocidade de carregamento do Tesla. Uma potência contratada de 3.45kVA apenas permitirá utilizar o máximo potencial do cabo de carregamento de série ligado a uma tomada comum (cerca de 3Kw) e sem grande margem para outros eletrodomésticos ligados. Já uma potência contratada de 10,35kVA suportará carregamentos de 7,4kW. A escolha dependerá sempre das necessidades do utilizador (para alguns o carregamento em tomada será suficiente para o dia-a-dia, para outros utilizadores, com percursos diários mais longos, necessitarão de maiores potências contratadas para suportarem as suas necessidades de carregamento).</p>
+      <p>No que diz respeito ao tipo de contador, monofásico ou trifásico, ambos são compatíveis com velocidades de carregamento até aos 7.4kW. Acima dessa velocidade de carregamento, os 11kW, só é possível obter com contadores trifásicos.</p>
+    `,
   },
   {
     q: 'Quanto tempo demoro a carregar o carro?',
-    a: 'Depende do posto e da bateria. Aproximado, de 10% a 90%:<br><br>' +
-       '• <strong>Tomada Schuko (3 kW)</strong>: 20–26 h<br>' +
-       '• <strong>Wall Connector 3.7 kW</strong>: 17–23 h<br>' +
-       '• <strong>Wall Connector 7.4 kW</strong>: 8–12 h<br>' +
-       '• <strong>Wall Connector 11 kW</strong>: 7–8 h<br>' +
-       '• <strong>Wall Connector 16.5 kW</strong>: 4–5 h<br>' +
-       '• <strong>Rápido público 50 kW</strong>: 1h45–2h<br>' +
-       '• <strong>Supercharger (20–80%)</strong>: 36–40 min<br><br>' +
-       'Na prática, carregas de noite o que gastaste de dia, o tempo "de carregamento" para o dia-a-dia é zero.',
+    a: `
+      <p>Esta questão é complexa porque existem várias formas, umas mais rápidas e outras mais lentas, para carregar o carro. Em primeiro lugar, o utilizador de um veículo elétrico acaba por aproveitar o "tempo morto" em que não está a utilizar o carro (por exemplo à noite, enquanto dorme) para o carregar, pelo que no dia-a-dia não dispende tempo algum na tarefa de carregamento do seu carro. Por outro lado, na sequência do ponto anterior, dificilmente o utilizador vai deixar o carro chegar aos 0% para o carregar — vai carregando diariamente o que gastou no(s) dia(s) prévio(s) pelo que o carregamento 0-100% tem pouca relevância. Deixamos uma ideia dos tempos previsíveis de carregamento para situações comuns (considerando eficiência de carregamento de 90%):</p>
+      <ul>
+        <li>Carregamento em casa numa TOMADA COMUM com cabo de série dos 10-90%: cerca de 26h (bateria 100kWh) ou 20h (bateria de 75kWh)</li>
+        <li>Carregamento em casa numa Tesla Wall Connector / Wallbox 16.5kW dos 10-90%: 5h (bateria 100kWh) ou 4h (bateria de 75kWh)</li>
+        <li>Carregamento em casa numa Tesla Wall Connector / Wallbox / tomada industrial a velocidade 11kW dos 10-90%: 8h (bateria 100kWh) ou 7h (bateria de 75kWh)</li>
+        <li>Carregamento em casa numa Tesla Wall Connector / Wallbox / tomada industrial a velocidade 7,4kW dos 10-90%: 12h (bateria 100kWh) ou 8,5h (bateria de 75kWh)</li>
+        <li>Carregamento em casa numa Tesla Wall Connector / Wallbox / tomada industrial a velocidade 3,7kW dos 10-90%: 23h (bateria 100kWh) ou 17h (bateria de 75kWh)</li>
+        <li>Carregamento num posto rápido da rede pública com adaptador Chademo (50kW) dos 20-80%: 2h (bateria 100kWh) ou 1:45h (bateria 75kWh)</li>
+        <li>Carregamento em Supercharger 20-80%: 40min (bateria 100kWh) ou 36min (bateria de 75kWh)</li>
+      </ul>
+    `,
   },
   {
     q: 'Existem incentivos na compra de um Tesla?',
-    a: 'Sim, mas variam de ano para ano. Consulta a <a href="https://github.com/jonasman/teslaclubportugal#existem-incentivos-na-compra-de-um-tesla" target="_blank" rel="noopener">FAQ do jonasman no GitHub</a>, mantida por um membro do clube.',
+    a: `
+      <p>Sim. Em 2017 os compradores de carros novos 100% elétricos, sejam pessoais individuais ou coletivas, tinham direito a candidatar-se a um incentivo directo do Fundo Ambiental de 2250€. Este incentivo irá previsivelmente manter-se em 2018. <a href="https://www.tesla.com/pt_PT/support/incentives" target="_blank" rel="noopener">Incentivos</a></p>
+    `,
   },
 ];
 
@@ -68,9 +94,16 @@ const faqLd = {
             <span class="text-lg leading-snug">{f.q}</span>
             <span class="mt-0.5 text-[var(--color-ink-muted)] group-open:rotate-45 transition-transform text-2xl leading-none" aria-hidden="true">+</span>
           </summary>
-          <div class="px-6 pb-6 text-[var(--color-ink-soft)] leading-relaxed" set:html={f.a} />
+          <div class="faq-answer px-6 pb-6 text-[var(--color-ink-soft)] leading-relaxed" set:html={f.a} />
         </details>
       ))}
     </section>
   </div>
 </BaseLayout>
+
+<style is:global>
+  .faq-answer p + p, .faq-answer ul + p { margin-top: 1rem; }
+  .faq-answer ul { margin-top: 1rem; padding-left: 1.25rem; list-style: disc; }
+  .faq-answer li + li { margin-top: 0.5rem; }
+  .faq-answer a { color: var(--color-accent); text-decoration: underline; text-underline-offset: 3px; }
+</style>
