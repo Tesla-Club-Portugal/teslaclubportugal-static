@@ -14,35 +14,35 @@ const heroSrcset = [
 const pillars = [
   {
     title: 'Guias práticos',
-    body: 'Do primeiro carregamento em casa aos superchargers na Europa — informação escrita por quem já cá está.',
+    body: 'Como carregar em casa, viagens longas, escolher o modelo. Escrito por quem já cá está.',
     href: '/guias/',
   },
   {
-    title: 'Superchargers em Portugal',
-    body: 'Mapa completo da rede Tesla no país, potências V2 · V3 · V3.5 e V4.',
+    title: 'Superchargers',
+    body: 'Onde estão, que potência têm, e como funciona a rede Tesla em Portugal.',
     href: '/superchargers/',
   },
   {
-    title: 'Parcerias exclusivas',
-    body: 'Descontos em películas, detalhe, wall boxes e serviços parceiros para membros.',
+    title: 'Descontos para membros',
+    body: 'Parcerias com empresas nacionais: películas, detalhe, wall boxes, carregadores.',
     href: '/parcerias/',
   },
 ];
 ---
 <BaseLayout
-  title="Tesla Club Portugal — Clube oficial de fãs Tesla em Portugal"
-  description="Comunidade portuguesa de proprietários e entusiastas Tesla desde 2018. Guias, superchargers, parcerias e apoio entre membros. Não afiliado à Tesla, Inc."
+  title="Tesla Club Portugal, clube de fãs Tesla em Portugal"
+  description="Somos donos de Teslas em Portugal e futuros donos. Comunidade desde 2018, sem publicidade nem afiliação comercial. Guias, superchargers, parcerias e apoio entre membros."
   image={hero}
   fullBleed
 >
-  <!-- Hero: natural 5:3 aspect so ALL 5 cars stay visible on every screen -->
-  <section class="relative w-full pt-14" aria-labelledby="hero-title">
+  <!-- Hero -->
+  <section class="relative w-full pt-16" aria-labelledby="hero-title">
     <div class="relative w-full" style="aspect-ratio: 5 / 3;">
       <img
         src={hero}
         srcset={heroSrcset}
         sizes="100vw"
-        alt="Cinco Teslas em Portugal alinhados frente a frente — Model S preto, Model 3 azul, Model X azul (com portas gullwing abertas), Model S azul e Model 3 vermelho — fotografados por membros do Tesla Club Portugal"
+        alt="Cinco Teslas em Portugal alinhados frente a frente. Um Model S preto, um Model 3 azul, um Model X azul com portas gullwing abertas, um Model S azul e um Model 3 vermelho, todos com matrícula portuguesa, fotografados por membros do Tesla Club Portugal."
         class="absolute inset-0 h-full w-full object-cover object-center"
         fetchpriority="high"
         loading="eager"
@@ -50,15 +50,13 @@ const pillars = [
         width="2000"
         height="1201"
       />
-      <!-- Subtle bottom gradient so text stays readable over the asphalt -->
       <div class="pointer-events-none absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
-      <!-- Text overlay, anchored to the safe zone (road) -->
       <div class="absolute inset-x-0 bottom-0 z-10 text-center text-white px-6 pb-[6%] md:pb-[4%]">
         <h1 id="hero-title" class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-[-0.03em] leading-[1.02] drop-shadow-lg">
           Tesla Club Portugal
         </h1>
         <p class="mt-3 md:mt-4 text-sm sm:text-base md:text-lg text-white/90 max-w-2xl mx-auto drop-shadow">
-          Clube oficial em português. Fãs, proprietários, futuros donos — uma comunidade a partilhar experiências desde 2018.
+          Fãs, donos, e quem está a pensar em comprar. Uma comunidade portuguesa em torno da marca desde 2018.
         </p>
         <div class="mt-5 md:mt-7 flex flex-col sm:flex-row gap-3 justify-center">
           <a href="/sobre-nos/" class="btn btn-dark">Conhecer o clube</a>
@@ -73,10 +71,10 @@ const pillars = [
     <div class="max-w-3xl">
       <p class="text-sm font-semibold tracking-widest text-[var(--color-accent)] uppercase">O que fazemos</p>
       <h2 class="mt-3 text-3xl md:text-5xl font-bold tracking-tight text-[var(--color-ink)]">
-        Uma comunidade construída pelos próprios membros.
+        Um clube feito pelos próprios membros.
       </h2>
       <p class="mt-5 text-lg text-[var(--color-ink-soft)] leading-relaxed">
-        Ajudamos quem quer comprar um Tesla, quem já tem, e quem procura respostas concretas sem ruído comercial. Tudo escrito e mantido por membros voluntários.
+        Ajudamos quem quer comprar um Tesla, quem já tem, e quem só quer perceber. Sem interesse comercial. Tudo escrito por gente que anda a conduzir estes carros no dia a dia.
       </p>
     </div>
     <div class="mt-14 grid md:grid-cols-3 gap-8">
@@ -85,7 +83,7 @@ const pillars = [
           <h3 class="text-xl font-semibold text-[var(--color-ink)]">{p.title}</h3>
           <p class="mt-3 text-[var(--color-ink-soft)] leading-relaxed">{p.body}</p>
           <span class="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-[var(--color-accent)] group-hover:gap-2 transition-all">
-            Explorar <span aria-hidden="true">→</span>
+            Ver <span aria-hidden="true">→</span>
           </span>
         </a>
       ))}
@@ -98,10 +96,10 @@ const pillars = [
       <div>
         <p class="text-sm font-semibold tracking-widest text-[var(--color-accent)] uppercase">Desde 2017</p>
         <h2 class="mt-3 text-3xl md:text-5xl font-bold tracking-tight leading-tight">
-          A Tesla chegou a Portugal em 2017.<br/>Este clube existe desde 2018.
+          A Tesla chegou a Portugal em 2017.<br/>O clube começou logo a seguir.
         </h2>
         <p class="mt-5 text-lg text-white/75 leading-relaxed max-w-xl">
-          Começámos no Facebook e crescemos com cada novo proprietário. Hoje somos a maior referência em português sobre a marca — guias, superchargers, dúvidas frequentes, e parcerias com empresas nacionais.
+          Começámos no Facebook, entre os primeiros donos portugueses. Fomos crescendo com cada novo Tesla que aparecia nas estradas. Hoje é onde os fãs portugueses se encontram para tirar dúvidas, partilhar viagens, e organizar encontros.
         </p>
         <div class="mt-8 flex gap-3">
           <a href="/sobre-nos/" class="btn btn-light">Ler a história</a>
@@ -131,10 +129,10 @@ const pillars = [
   <!-- CTA -->
   <section class="max-w-4xl mx-auto px-6 py-24 md:py-32 text-center">
     <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-[var(--color-ink)]">
-      Estás prestes a comprar um Tesla?
+      A pensar comprar um Tesla?
     </h2>
     <p class="mt-4 text-lg text-[var(--color-ink-soft)] max-w-2xl mx-auto">
-      Junta-te ao grupo antes de assinares. Perguntas rápidas, respostas honestas de quem já passou por isso.
+      Passa pelo grupo antes de assinares. Perguntas rápidas, respostas honestas de quem já passou por isso.
     </p>
     <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
       <a href="https://www.facebook.com/groups/teslaclubportugal" target="_blank" rel="noopener" class="btn" style="background:var(--color-ink);color:white;">Grupo Facebook</a>
