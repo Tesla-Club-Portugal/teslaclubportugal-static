@@ -16,6 +16,7 @@ const current = Astro.url.pathname;
       <span class="hidden sm:inline text-base md:text-[17px]">Tesla Club Portugal</span>
       <span class="sm:hidden text-base">TCP</span>
     </a>
+
     <ul class="hidden md:flex items-center gap-1 text-sm font-medium">
       {links.map(l => (
         <li>
@@ -25,11 +26,94 @@ const current = Astro.url.pathname;
         </li>
       ))}
     </ul>
-    <div class="flex items-center gap-3">
+
+    <div class="flex items-center gap-2 md:gap-3">
       <a href="/english/" class="hidden md:inline text-sm text-[var(--color-ink-soft)] hover:text-[var(--color-ink)] transition">EN</a>
-      <a href="https://www.facebook.com/groups/teslaclubportugal" target="_blank" rel="noopener" class="text-sm font-semibold px-4 py-1.5 bg-[var(--color-ink)] text-white rounded-full hover:bg-black transition">
+      <a href="https://www.facebook.com/groups/teslaclubportugal" target="_blank" rel="noopener" class="hidden md:inline-flex text-sm font-semibold px-4 py-1.5 bg-[var(--color-ink)] text-white rounded-full hover:bg-black transition">
         Junta-te
       </a>
+
+      <button
+        type="button"
+        class="md:hidden inline-flex items-center justify-center p-2 -mr-2 rounded-md text-[var(--color-ink)] hover:bg-[var(--color-ink)]/5 transition"
+        aria-label="Abrir menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        data-menu-toggle
+      >
+        <svg data-icon-menu xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="4" y1="7"  x2="20" y2="7"/>
+          <line x1="4" y1="12" x2="20" y2="12"/>
+          <line x1="4" y1="17" x2="20" y2="17"/>
+        </svg>
+        <svg data-icon-close class="hidden" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="6"  y1="6"  x2="18" y2="18"/>
+          <line x1="18" y1="6"  x2="6"  y2="18"/>
+        </svg>
+      </button>
     </div>
   </nav>
+
+  <div
+    id="mobile-menu"
+    class="md:hidden hidden border-t border-[var(--color-line)] bg-white/95 backdrop-blur-md"
+    data-menu-panel
+  >
+    <ul class="max-w-7xl mx-auto px-6 py-4 space-y-1">
+      {links.map(l => (
+        <li>
+          <a
+            href={l.href}
+            class:list={["block px-3 py-3 rounded-md text-base font-medium transition hover:bg-[var(--color-ink)]/5",
+              current.startsWith(l.href) && current !== '/' ? 'text-[var(--color-ink)]' : 'text-[var(--color-ink-soft)]'
+            ]}
+          >{l.label}</a>
+        </li>
+      ))}
+      <li class="pt-2 mt-2 border-t border-[var(--color-line)]">
+        <a href="/english/" class="block px-3 py-3 rounded-md text-base text-[var(--color-ink-soft)] hover:bg-[var(--color-ink)]/5 transition">English</a>
+      </li>
+      <li>
+        <a
+          href="https://www.facebook.com/groups/teslaclubportugal"
+          target="_blank"
+          rel="noopener"
+          class="block px-3 py-3 mt-1 rounded-full text-center text-base font-semibold bg-[var(--color-ink)] text-white hover:bg-black transition"
+        >Junta-te ao grupo</a>
+      </li>
+    </ul>
+  </div>
 </header>
+
+<script>
+  const btn    = document.querySelector('[data-menu-toggle]');
+  const panel  = document.querySelector('[data-menu-panel]');
+  const iconM  = document.querySelector('[data-icon-menu]');
+  const iconX  = document.querySelector('[data-icon-close]');
+
+  function setOpen(open) {
+    if (!btn || !panel) return;
+    btn.setAttribute('aria-expanded', String(open));
+    btn.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+    panel.classList.toggle('hidden', !open);
+    iconM?.classList.toggle('hidden', open);
+    iconX?.classList.toggle('hidden', !open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+
+  btn?.addEventListener('click', () => {
+    const open = btn.getAttribute('aria-expanded') === 'true';
+    setOpen(!open);
+  });
+
+  panel?.querySelectorAll('a').forEach(a =>
+    a.addEventListener('click', () => setOpen(false))
+  );
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && btn?.getAttribute('aria-expanded') === 'true') {
+      setOpen(false);
+      btn.focus();
+    }
+  });
+</script>
