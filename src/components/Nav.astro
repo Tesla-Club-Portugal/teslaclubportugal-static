@@ -10,11 +10,11 @@ const links = [
 const current = Astro.url.pathname;
 ---
 <header class="fixed inset-x-0 top-0 z-50 backdrop-blur-md bg-white/80 border-b border-[var(--color-line)]/60">
-  <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 h-16" aria-label="Principal">
-    <a href="/" class="flex items-center gap-2.5 font-semibold text-[var(--color-ink)] tracking-tight" aria-label="Tesla Club Portugal, ir para a página inicial">
-      <img src="/images/logo-tcp-96.png" alt="" width="32" height="32" class="w-8 h-8 rounded-full" />
-      <span class="hidden sm:inline text-[15px]">Tesla Club Portugal</span>
-      <span class="sm:hidden text-[15px]">TCP</span>
+  <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 h-20" aria-label="Principal">
+    <a href="/" class="flex items-center gap-3 font-semibold text-[var(--color-ink)] tracking-tight" aria-label="Tesla Club Portugal, ir para a página inicial">
+      <img src="/images/logo-tcp-128.png" alt="" width="56" height="56" class="w-12 h-12 md:w-14 md:h-14" />
+      <span class="hidden sm:inline text-base md:text-[17px]">Tesla Club Portugal</span>
+      <span class="sm:hidden text-base">TCP</span>
     </a>
     <ul class="hidden md:flex items-center gap-1 text-sm font-medium">
       {links.map(l => (
