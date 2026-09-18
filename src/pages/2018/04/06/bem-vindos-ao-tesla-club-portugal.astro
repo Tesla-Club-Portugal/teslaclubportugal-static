@@ -3,29 +3,34 @@ import PageLayout from '../../../../layouts/PageLayout.astro';
 ---
 <PageLayout
   title="Bem-vindos ao Tesla Club Portugal"
-  description="A publicação inaugural do Tesla Club Portugal, o que o site vai conter, secção em inglês para visitantes estrangeiros, e como participar."
+  description="A publicação inaugural do Tesla Club Portugal. O website do club irá conter informações úteis sobre carregamento, rotas, diários de bordo e secção em inglês para estrangeiros de visita."
   eyebrow="Blog · 6 de Abril de 2018"
   headline="Bem-vindos ao Tesla Club Portugal."
-  intro="O website do clube irá conter informações úteis, carregamento em Portugal, rotas para as principais cidades, diários de bordo, e secção em inglês para estrangeiros de visita."
   image="/wp-content/uploads/2018/05/TOC-Logo-Portugal-300x300.png"
   type="article"
   publishedAt="2018-04-06T16:01:07+00:00"
 >
+  <p>O website do club irá conter informações úteis, como carregamento em Portugal e rotas para se chegar às principais cidades do país, diários de bordo e secção em inglês para estrangeiros que estejam de visita a Portugal.</p>
+
+  <p>&nbsp;</p>
+
   <figure class="not-prose my-8 flex justify-center">
     <img src="/wp-content/uploads/2018/05/TOC-Logo-Portugal-300x300.png"
-         alt="Logótipo do Tesla Club Portugal, badge circular vermelho com um T ao centro e a inscrição TESLA OWNERS PORTUGAL à volta."
-         width="180" height="180"
-         class="w-40 h-40 rounded-full shadow-lg"
+         srcset="/wp-content/uploads/2018/05/TOC-Logo-Portugal-100x100.png 100w, /wp-content/uploads/2018/05/TOC-Logo-Portugal-150x150.png 150w, /wp-content/uploads/2018/05/TOC-Logo-Portugal-300x300.png 300w, /wp-content/uploads/2018/05/TOC-Logo-Portugal-768x768.png 768w, /wp-content/uploads/2018/05/TOC-Logo-Portugal-1024x1024.png 1024w"
+         sizes="300px"
+         alt=""
+         width="300" height="300"
+         class="w-72 h-72 rounded-full shadow-lg"
          loading="eager" decoding="async" />
   </figure>
 
-  <p>
-    Este é o primeiro post do Tesla Club Portugal. O objectivo do clube é ajudar os membros a partilhar experiências, tirar dúvidas antes da compra, e criar uma comunidade portuguesa em torno da marca.
-  </p>
-  <p>
-    Nas próximas semanas vamos publicar guias sobre carregamento, rotas com Superchargers, e comparações. A secção <a href="/english/">English</a> vai servir visitantes estrangeiros que precisem de informação sobre carregar em Portugal.
-  </p>
-  <p>
-    Junta-te ao <a href="https://www.facebook.com/groups/teslaclubportugal">grupo Facebook</a>, é onde a conversa acontece.
-  </p>
+  <nav class="not-prose mt-16 pt-8 border-t border-[var(--color-line)] flex justify-between gap-4" aria-label="Navegação entre publicações">
+    <a href="/my-blog/" class="self-center text-sm font-medium text-[var(--color-ink-soft)] hover:text-[var(--color-ink)] transition whitespace-nowrap px-3">
+      Todas as publicações
+    </a>
+    <a href="/2018/12/23/model-3-o-carro-que-muda-tudo/" class="group flex-1 rounded-2xl border border-[var(--color-line)] p-5 hover:border-[var(--color-ink)] transition text-right">
+      <span class="block text-xs uppercase tracking-widest text-[var(--color-ink-muted)]">Seguinte →</span>
+      <span class="mt-1 block font-semibold text-[var(--color-ink)] group-hover:text-[var(--color-accent)] transition">Model 3, o carro que muda tudo</span>
+    </a>
+  </nav>
 </PageLayout>
