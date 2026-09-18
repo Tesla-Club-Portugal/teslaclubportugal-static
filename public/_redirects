@@ -1,9 +1,14 @@
-# Old WP admin surface — no longer exists on static site
+# Old WP surface — gone
 /wp-admin/*         /  301
 /wp-admin           /  301
 /wp-login.php       /  301
 /wp-json/*          /  301
 /xmlrpc.php         /  410
+
+# Old WP feed & author archives
+/author/*           /  301
+/comments/*         /  301
+/feed/*             /  301
 
 # Dead forum → homepage
 /community/*        /  301
@@ -11,7 +16,7 @@
 /forums/*           /  301
 /forums             /  301
 
-# Author archives, comment feeds — WP artifacts we don't need
-/author/*           /  301
-/comments/*         /  301
-/feed/*             /  301
+# Old cached bundles — no longer served
+/wp-content/cache/*     /  301
+/wp-content/plugins/*   /  301
+/wp-content/themes/*    /  301

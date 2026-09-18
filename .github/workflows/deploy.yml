@@ -1,0 +1,52 @@
+name: Deploy to Cloudflare Pages
+
+on:
+  push:
+    branches: [main, v2]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  deployments: write
+
+concurrency:
+  group: cf-pages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy-v1:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy public/ → teslaclubportugal-static (v1)
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy public --project-name=teslaclubportugal-static --branch=main --commit-dirty=true
+
+  build-and-deploy-v2:
+    if: github.ref == 'refs/heads/v2'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy dist/ → teslaclubportugal-static-v2
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=teslaclubportugal-static-v2 --branch=v2 --commit-dirty=true

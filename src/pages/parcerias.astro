@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const partners = [
+  { name: 'CarDetail',           url: null,                                                         perk: '10% de desconto num catálogo completo de películas e produtos de detalhe automóvel — peçam-no à CarDetail.' },
+  { name: 'WattsOnWheels',       url: null,                                                         perk: '10% de desconto em alugueres (código TESLACLUBPORTUGAL no checkout). 1% de desconto em compra de viaturas (mencionar TCP no acto).' },
+  { name: 'SóPeliculas',         url: null,                                                         perk: '10% de desconto em películas.' },
+  { name: 'uCharge',             url: null,                                                         perk: '10% de desconto em instalações elétricas, produtos, e centro de assistência técnica. Não acumulável com promoções em vigor.' },
+  { name: 'Tesla Portugal Tours', url: null,                                                        perk: '10% de desconto em todos os serviços.' },
+  { name: 'VPelículas Bobadela', url: 'https://www.facebook.com/VPeliculasBobadela/',               perk: '10% de desconto em todos os serviços, excepto legalizações.' },
+  { name: 'Portugal EV Tours',   url: 'https://portugalevtours.com',                                perk: '10% em todos os serviços. Código PEVTTCP na reserva.' },
+  { name: 'Details Concept',     url: 'https://www.facebook.com/DetailsConcept/',                   perk: '10% de desconto em todos os serviços.' },
+  { name: 'Detail Imperial',     url: 'https://www.facebook.com/detailimperial01/',                 perk: 'Vários descontos em todos os serviços.' },
+  { name: 'Fama Car Care',       url: 'https://www.facebook.com/FamaCarCare',                       perk: 'Vários descontos em serviços de detalhe.' },
+  { name: 'Caldas Detail Garage', url: 'https://www.facebook.com/Caldas-Detail-Garage-Detalhe-Autom%C3%B3vel-2437249386302286', perk: '10% de desconto em películas, PPF, detalhe e car wrapping.' },
+  { name: 'NC Wrapping',         url: 'https://www.facebook.com/ncwrapping',                        perk: 'Oferta da aplicação de proteção cerâmica (valor de 150€) e do serviço de limpeza na compra de um wrapping. 10% em películas e chrome delete.' },
+  { name: 'ChargeGuru',          url: 'https://chargeguru.typeform.com/to/xQvGzuBk',                perk: '10% em carregador e instalação (moradias). 10% em instalação em apartamentos (com ligação à fração). Excepções nas configurações com Tesla Wall Connector — desconto não se aplica ao carregador.' },
+  { name: 'Best Química',        url: 'https://bestquimica.com/',                                   perk: '10% em todos os produtos na loja online, código Tesla.' },
+  { name: 'Moticristo Mafra',    url: 'https://moticristo.pt/oficina-auto/',                        perk: '10% em todos os serviços, incluindo rent-a-car. Peças excluídas. Tesla Approved Body Shop.' },
+  { name: 'Ampère',              url: 'http://www.ampere.pt/',                                      perk: 'Orçamento grátis por videochamada. 10% em mão-de-obra. Oferta de miniatura Tesla (Hot Wheels / Matchbox). Viana do Castelo, Braga, Vila Real e Porto.' },
+  { name: 'RVTec',               url: 'https://rvtec.pt/',                                          perk: '10% sobre o orçamento. Santarém e Lisboa. Válido até fim de 2026.' },
+];
+---
+<BaseLayout
+  title="Parcerias — descontos exclusivos para membros | Tesla Club Portugal"
+  description="Descontos negociados para membros do Tesla Club Portugal: películas, detalhe automóvel, wall boxes, carregadores, oficinas e mais. Basta apresentar o cartão de membro."
+>
+  <header class="max-w-4xl mx-auto px-6 pt-8 pb-12 md:pt-16 md:pb-16">
+    <p class="text-sm font-semibold tracking-widest text-[var(--color-accent)] uppercase">Comunidade</p>
+    <h1 class="mt-3 text-4xl md:text-6xl font-bold tracking-[-0.03em] leading-[1.05] text-[var(--color-ink)]">
+      Parcerias.
+    </h1>
+    <p class="mt-5 text-lg md:text-xl text-[var(--color-ink-soft)] leading-relaxed max-w-3xl">
+      Os membros registados têm acesso a descontos nas empresas parceiras — basta apresentar o cartão de membro do clube.
+    </p>
+  </header>
+
+  <section class="max-w-6xl mx-auto px-6 pb-24">
+    <ul class="grid gap-4 md:grid-cols-2">
+      {partners.map(p => (
+        <li class="rounded-2xl border border-[var(--color-line)] p-6 hover:border-[var(--color-ink)] transition">
+          <div class="flex items-start justify-between gap-4">
+            <h2 class="text-lg font-semibold text-[var(--color-ink)]">
+              {p.url ? <a href={p.url} target="_blank" rel="noopener" class="hover:text-[var(--color-accent)]">{p.name} <span aria-hidden="true" class="text-[var(--color-ink-muted)] font-normal">↗</span></a> : p.name}
+            </h2>
+          </div>
+          <p class="mt-3 text-[var(--color-ink-soft)] leading-relaxed text-[15px]">{p.perk}</p>
+        </li>
+      ))}
+    </ul>
+
+    <div class="mt-16 rounded-2xl bg-[var(--color-surface-alt)] p-8 text-center">
+      <h2 class="text-2xl font-semibold text-[var(--color-ink)]">És uma empresa e queres ser parceira?</h2>
+      <p class="mt-3 text-[var(--color-ink-soft)] max-w-2xl mx-auto">
+        Enviámos-te uma mensagem no <a href="https://www.facebook.com/groups/teslaclubportugal" target="_blank" rel="noopener" class="text-[var(--color-accent)] underline underline-offset-4">grupo Facebook</a> — indica o teu contacto e a proposta.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

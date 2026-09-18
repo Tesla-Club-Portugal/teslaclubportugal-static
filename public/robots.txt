@@ -1,11 +1,4 @@
 User-agent: *
-Disallow: /wp-content/uploads/wpo/wpo-plugins-tables-list.json
+Allow: /
 
-# START YOAST BLOCK
-# ---------------------------
-User-agent: *
-Disallow:
-
-Sitemap: https://teslaclubportugal.com/sitemap_index.xml
-# ---------------------------
-# END YOAST BLOCK
+Sitemap: https://teslaclubportugal-static-v2.pages.dev/sitemap-index.xml
