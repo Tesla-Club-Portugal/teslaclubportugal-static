@@ -1,0 +1,5 @@
+# Reviewers pedidos automaticamente em cada PR aberto.
+# Formato: <padrão de ficheiros>   <utilizador(es)>
+# Docs: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-security/customizing-your-repository/about-code-owners
+
+*   @manuelrocha88 @jonasman
